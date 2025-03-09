@@ -1,7 +1,6 @@
 import {
 	pgTable,
 	text,
-	timestamp,
 	uuid,
 	varchar,
 	pgEnum,
@@ -11,8 +10,8 @@ import {
 
 import { userTable } from './users';
 import { petImagesTable } from './petImages';
-// import { gendersEnum, petSpeciesEnum } from '../enums';
 import { createdAt, id, updatedAt } from '../schemaHelpers';
+import { petContactNumbersTable } from './petContactNumbers';
 
 export const petSpecies = ['perro', 'gato', 'ave', 'otro'] as const;
 export type PetSpecies = (typeof petSpecies)[number];
@@ -33,6 +32,9 @@ export const petTable = pgTable('pets_table', {
 	age: integer('age'),
 	gender: gendersEnum('gender'),
 	description: text('description'),
+	main_contact_number_id: uuid('main_contact_number_id')
+		.references(() => petContactNumbersTable.id)
+		.notNull(),
 	profile_image_id: uuid('profile_image_id')
 		.references(() => petImagesTable.id)
 		.notNull(),

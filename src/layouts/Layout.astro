@@ -10,10 +10,17 @@ import "../styles/global.css";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Encuentra Tu Gato</title>
+
+    <meta name="appleid-signin-client-id" content="com.example.web">
+    <meta name="appleid-signin-scope" content="email">
+    <meta name="appleid-signin-redirect-uri" content="https://example.com/redirect">
+    <meta name="appleid-signin-use-popup" content="true">
+    
 	</head>
 	<body>
 		<slot />
 	</body>
+  <div id="fb-root"></div>
 </html>
 
 <style>

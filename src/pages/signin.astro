@@ -1,0 +1,41 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "../layouts/Layout.astro";
+import GoogleAuthButton from "@/components/GoogleAuthButton.astro";
+import AppleAuthButton from "@/components/AppleAuthButton.astro";
+import FacebookAuthButton from "@/components/FacebookAuthButton.astro";
+import Link from "@/components/ui/Link.astro";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
+---
+
+<Layout title="Sign in">
+  <div class="h-dvh grid place-items-center">
+    <div class="text-center flex flex-col items-center gap-12 px-5">
+      <header>
+        <h1 class="text-5xl mb-4">Bienvenido</h1>
+        <p class="text-md">Parece que es la primera vez que te apareces por aquí</p>
+        <!-- <p class="text-md">Inicia sesión para continuar</p> -->
+      </header>
+      <hr class="h-[1px] bg-zinc-500/20 w-[275px]" />
+      <form action="/api/auth/signin" method="post" class="flex flex-col w-[275px] gap-4 justify-center">
+        <!-- <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <button type="submit">Login</button> -->
+        <GoogleAuthButton value="google" name="provider" type="submit" />
+        <!-- <AppleAuthButton /> -->
+        <FacebookAuthButton value="facebook" name="provider" type="submit" />
+      </form>
+      <div class="mt-10"><Link href="/terminos-de-uso">Términos de uso</Link><span class="before:content-['|'] before:mx-2 text-[#0b412e]/50" /><Link href="/privacidad">Política de privacidad</Link></div>
+    </div>
+  </div>
+</Layout>

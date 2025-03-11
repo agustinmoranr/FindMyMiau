@@ -1,0 +1,146 @@
+---
+import P from '@/components/ui/typography/P.astro';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <div class="max-w-3xl mx-auto py-20 text-lg text-pretty px-5">
+    <header>
+      <h1 class="text-5xl font-bold mb-8">Política de Privacidad</h1> 
+      <span class="inline-block">Ultima fecha de actualización: <time>11/03/2025</time></span>
+      <P class="mt-10">En <strong class="font-semibold">Find My Miau</strong> nos comprometemos a proteger y respetar tu privacidad. Esta Política de Privacidad describe cómo recopilamos, usamos y compartimos la información que nos proporcionas al utilizar nuestro sitio web y servicios (en adelante, el "Servicio"). Al acceder y utilizar nuestro Servicio, aceptas y consientes las prácticas descritas en esta política.</P>
+    </header>
+
+    <ol class="list-decimal list-inside my-20 space-y-14" type="1" >
+      <!-- 1. Información que Recopilamos -->
+      <li class="marker:text-4xl marker:font-semibold">
+        <h2 class="text-4xl inline font-semibold">Información que Recopilamos</h2>
+        <hr class="h-8 border-none"/>
+
+        <ol class="list-[lower-alpha] list-inside space-y-10 [&>li]:marker:text-2xl [&>li]:marker:font-semibold" type="a" >
+          <li> 
+              <span class="inline font-semibold text-2xl">Datos de los Usuarios</span>
+              <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
+                <li>
+                  <P><strong class="font-semibold">Información de registro:</strong> Al crear tu cuenta utilizando proveedores de autenticación externos (Google, Facebook, etc.), recopilamos datos básicos como tu dirección de correo electrónico, nombre y número de teléfono, según lo permitido por el proveedor.
+                  </P>
+                </li>
+                <li>
+                  <P><strong class="font-semibold">Datos de autenticación:</strong> Utilizamos servicios de autenticación de Supabase para facilitar el acceso, sin necesidad de gestionar contraseñas de forma directa.</P>
+                </li>
+              </ul>
+          </li>
+
+          <li> 
+            <span class="inline font-semibold text-2xl">Información de las Mascotas</span>
+            <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
+              <li>
+                <P><strong class="font-semibold">Perfil de la mascota:</strong> Los usuarios pueden crear perfiles para sus mascotas, que incluyen nombre, especie, descripción, fotografías y otros detalles relevantes.
+                </P>
+              </li>
+              <li>
+                <P><strong class="font-semibold">Imágenes y QR:</strong> Los archivos subidos (imágenes de la mascota, códigos QR) se almacenan de forma segura en nuestros buckets de almacenamiento.</P>
+              </li>
+            </ul>
+          </li>
+
+          <li> 
+            <span class="inline font-semibold text-2xl">Datos de Uso</span>
+            <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
+              <li>
+                <P class="font-normal"><strong class="font-semibold">Datos de navegación:</strong> Recopilamos información sobre cómo interactúas con nuestro Servicio (páginas visitadas, tiempo de navegación, etc.) para mejorar la experiencia de usuario y optimizar nuestro sitio.
+                </P>
+              </li>
+             
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <!-- 2. Uso de la información -->
+      <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Uso de la Información</h2>
+        <P class="mt-8 mb-10">Utilizamos la información recopilada para:</P>
+        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg">
+          <li>
+            <P><strong class="font-semibold">Proveer y mejorar el Servicio:</strong> Permitir la creación y gestión de perfiles de mascotas, generación de códigos QR y asegurar un funcionamiento correcto y seguro del sitio.
+            </P>
+          </li>
+          <li>
+            <P><strong class="font-semibold">Autenticación y seguridad:</strong> Facilitar el acceso a tu cuenta mediante proveedores de terceros, y mantener la seguridad de tus datos.</P>
+          </li>
+          <li>
+            <P><strong class="font-semibold">Soporte y comunicación:</strong> Responder a tus consultas, notificar cambios en el Servicio o enviarte información relevante (por ejemplo, actualizaciones de la política de privacidad).</P>
+          </li>
+        </ul>
+      </li>
+      <!-- 3. Compartición y Divulgación de Datos -->
+      <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Compartición y Divulgación de Datos</h2>
+        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
+          <li>
+            <P><strong class="font-semibold">Con proveedores de servicios:</strong> Compartimos información con terceros de confianza que nos ayudan a operar el Servicio (por ejemplo, Supabase para almacenamiento y autenticación), siempre bajo acuerdos de confidencialidad.
+            </P>
+          </li>
+          <li>
+            <P><strong class="font-semibold">Requerimientos legales:</strong> Podemos divulgar información cuando sea requerido por la ley o para proteger nuestros derechos, la seguridad de los usuarios o prevenir actividades fraudulentas.</P>
+          </li>
+          <li>
+            <P><strong class="font-semibold">No compartimos datos para fines publicitarios o de venta:</strong> Tu información no será vendida ni compartida con anunciantes sin tu consentimiento expreso.</P>
+          </li>
+        </ul>
+      </li>
+
+      <!-- 4. Seguridad de la Información -->
+      <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Seguridad de la Información</h2>
+        <P class="mt-8">Implementamos medidas de seguridad técnicas y organizativas para proteger tus datos contra accesos no autorizados, alteraciones, divulgación o destrucción. Aunque nos esforzamos por garantizar la seguridad, ningún método de transmisión por internet es 100% seguro.</P>
+      </li>
+
+      <!-- 5. Cookies y Tecnologías Similares -->
+      <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Cookies y Tecnologías Similares</h2>
+        <P class="mt-8">Nuestro sitio puede utilizar cookies y tecnologías similares para mejorar la experiencia del usuario, analizar tendencias y administrar el sitio. Puedes gestionar las preferencias de cookies a través de la configuración de tu navegador.</P>
+      </li>
+
+      <!-- 6. Derechos del Usuario -->
+      <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Derechos del Usuario</h2>
+        <P class="mt-8 mb-10">Tienes derecho a:</P>
+        <ul class="ml-4 list-disc space-y-6 text-base [&>li]:marker:text-base">
+          <li>
+            Acceder, corregir o eliminar tus datos personales.
+          </li>
+          <li>
+            Revocar el consentimiento para el tratamiento de tus datos en cualquier momento.
+          </li>
+          <li>
+            Solicitar información adicional sobre cómo se procesan tus datos.
+          </li>
+        </ul>
+        <hr class="h-10 border-none"/>
+        <P>Si deseas ejercer alguno de estos derechos, por favor contáctanos utilizando la información que se proporciona en la sección de Contacto.</P>
+
+      </li>
+
+      <!-- 7. Cambios en la Política de Privacidad -->
+      <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Cambios en la Política de Privacidad</h2>
+        <P class="mt-8">Podemos actualizar esta Política de Privacidad periódicamente. Cuando realicemos cambios significativos, publicaremos la versión actualizada en nuestro sitio web junto con la fecha de la última actualización. Te recomendamos revisar esta política regularmente para estar informado sobre cómo protegemos tu información.</P>
+      </li>
+
+       <!-- 8. Contacto -->
+       <li class="marker:font-semibold marker:text-4xl">
+        <h2 class="text-4xl inline font-semibold">Contacto</h2>
+        <P class="mt-8 mb-10">Si tienes preguntas o inquietudes sobre esta Política de Privacidad o sobre el manejo de tus datos personales, puedes contactarnos a través de:</P>
+        <ul class="ml-4 list-disc space-y-6 text-base [&>li]:marker:text-base">
+          <li>
+            Correo electrónico: findmymiau@gmail.com
+          </li>
+        </ul>
+      </li>
+    </ol>
+
+    <hr />
+    <P class="my-10">Al utilizar nuestro Servicio, confirmas que has leído, comprendido y aceptado los términos de esta Política de Privacidad.</P>
+    <hr/>
+  </div>
+</Layout>

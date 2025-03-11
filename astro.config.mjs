@@ -5,11 +5,19 @@ import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  },
+	vite: {
+		plugins: [tailwindcss()],
+	},
 
-  integrations: [react()]
+	site: 'https://www.encuentratugato.com',
+	output: 'server',
+	integrations: [react()],
+	adapter: vercel(),
+  server: {
+    host: "0.0.0.0"
+  }
 });

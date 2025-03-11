@@ -4,17 +4,20 @@ import type { APIRoute } from 'astro';
 import { supabase } from '../../../lib/supabaseClient';
 import type { Provider } from '@supabase/supabase-js';
 
+const PUBLIC_DOMAIN_URL = import.meta.env.PUBLIC_DOMAIN_URL;
+
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 	const formData = await request.formData();
 	// const email = formData.get('email')?.toString();
 	// const password = formData.get('password')?.toString();
 	const provider = formData.get('provider')?.toString();
-	const validProviders = ['google', 'apple'];
+	const validProviders = ['google', 'facebook'];
 	if (provider && validProviders.includes(provider)) {
+		const redirectTo = `${PUBLIC_DOMAIN_URL}/api/auth/callback`;
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: provider as Provider,
 			options: {
-				redirectTo: `${import.meta.env.PUBLIC_DOMAIN_URL}/api/auth/callback`,
+				redirectTo,
 			},
 		});
 

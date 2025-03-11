@@ -3,7 +3,6 @@ import { supabase } from '../../../lib/supabaseClient';
 
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 	const authCode = url.searchParams.get('code');
-
 	if (!authCode) {
 		return new Response('No code provided', { status: 400 });
 	}

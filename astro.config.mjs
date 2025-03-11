@@ -13,11 +13,11 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 	},
 
-	site: 'https://www.encuentratugato.com',
+	site: 'https://www.findmymiau.com',
 	output: 'server',
 	integrations: [react()],
 	adapter: vercel(),
-  server: {
-    host: "0.0.0.0"
-  }
+	server: {
+		host: '0.0.0.0',
+	},
 });

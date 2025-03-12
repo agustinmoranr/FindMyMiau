@@ -1,6 +1,10 @@
 import { defineConfig } from 'drizzle-kit';
 import { loadEnv } from 'vite';
-const { DATABASE_URL } = loadEnv(process.env.NODE_ENV!, process.cwd(), '');
+const { DATABASE_URL } = loadEnv(
+	process.env.NODE_ENV! || 'development',
+	process.cwd(),
+	'',
+);
 
 export default defineConfig({
 	schema: './src/drizzle/schema.ts',

@@ -1,121 +1,223 @@
 ---
 import P from '@/components/ui/typography/P.astro';
 import Layout from '../layouts/Layout.astro';
-import Link from '@/components/ui/Link.astro';
+import Link from '@/components/ui/Link';
 ---
+
 <Layout>
-  <div class="max-w-3xl mx-auto py-20 text-lg text-pretty px-5">
-    <header>
-      <h1 class="text-5xl font-bold mb-8">Términos de Uso</h1> 
-      <span class="inline-block">Ultima fecha de actualización: <time>11/03/2025</time></span>
-      <P class="mt-10">Bienvenido a <strong class="font-semibold">Find My Miau</strong>. Al acceder y utilizar nuestro sitio web y servicios (en adelante, el "Servicio"), aceptas cumplir y estar sujeto a estos Términos de Uso. Si no estás de acuerdo con alguna parte de estos términos, te pedimos que no utilices nuestro Servicio.</P>
-    </header>
+	<div class='max-w-3xl mx-auto py-20 text-lg text-pretty px-5'>
+		<header>
+			<h1 class='text-5xl font-bold mb-8'>Términos de Uso</h1>
+			<span class='inline-block'
+				>Ultima fecha de actualización: <time>11/03/2025</time></span
+			>
+			<P class='mt-10'
+				>Bienvenido a <strong class='font-semibold'>Find My Miau</strong>. Al
+				acceder y utilizar nuestro sitio web y servicios (en adelante, el
+				"Servicio"), aceptas cumplir y estar sujeto a estos Términos de Uso. Si
+				no estás de acuerdo con alguna parte de estos términos, te pedimos que
+				no utilices nuestro Servicio.</P
+			>
+		</header>
 
-    <ol class="list-decimal list-inside my-20 space-y-14" type="1" >
-      <!-- 1. Aceptación de los Términos -->
-      <li class="marker:text-4xl marker:font-semibold">
-        <h2 class="text-4xl inline font-semibold">Aceptación de los Términos</h2>
-        <P class="mt-8">Al utilizar Find My Miau, confirmas que has leído, entendido y aceptado estos Términos de Uso y nuestra <Link href="/privacidad">Política de Privacidad</Link>. Estos términos constituyen un acuerdo legalmente vinculante entre tú (el "Usuario") y Find My Miau.</P>
-      </li>
+		<ol class='list-decimal list-inside my-20 space-y-14' type='1'>
+			<!-- 1. Aceptación de los Términos -->
+			<li class='marker:text-4xl marker:font-semibold'>
+				<h2 class='text-4xl inline font-semibold'>
+					Aceptación de los Términos
+				</h2>
+				<P class='mt-8'
+					>Al utilizar Find My Miau, confirmas que has leído, entendido y
+					aceptado estos Términos de Uso y nuestra <Link href='/privacidad'
+						>Política de Privacidad</Link
+					>. Estos términos constituyen un acuerdo legalmente vinculante entre
+					tú (el "Usuario") y Find My Miau.</P
+				>
+			</li>
 
-      <!-- 2. Descripción del Servicio -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Descripción del Servicio</h2>
-        <P class="mt-8"><strong class="font-semibold">Find My Miau</strong> es una plataforma que permite a los usuarios crear perfiles para sus mascotas, almacenar información y generar códigos QR que facilitan el reencuentro de las mascotas con sus dueños. Los usuarios pueden autenticarse mediante proveedores externos (Google, Facebook, etc.) y gestionar los datos de sus mascotas de forma sencilla.</P>
-      </li>
+			<!-- 2. Descripción del Servicio -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>Descripción del Servicio</h2>
+				<P class='mt-8'
+					><strong class='font-semibold'>Find My Miau</strong> es una plataforma
+					que permite a los usuarios crear perfiles para sus mascotas, almacenar
+					información y generar códigos QR que facilitan el reencuentro de las mascotas
+					con sus dueños. Los usuarios pueden autenticarse mediante proveedores externos
+					(Google, Facebook, etc.) y gestionar los datos de sus mascotas de forma
+					sencilla.</P
+				>
+			</li>
 
-      <!-- 3. Registro y Cuentas de Usuario -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Registro y Cuentas de Usuario</h2>
-        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
-          <li>
-            <P><strong class="font-semibold">Registro Simplificado:</strong> La creación de una cuenta en nuestro Servicio se realiza mediante autenticación con proveedores externos o métodos simplificados (por ejemplo, autenticación vía número de teléfono). Al registrarte, aceptas proporcionar información veraz y actualizada.
-            </P>
-          </li>
-          <li>
-            <P><strong class="font-semibold">Seguridad de la Cuenta:</strong> Eres responsable de mantener la confidencialidad de tu cuenta y de todas las actividades que ocurran bajo ella. Find My Miau no se hará responsable por accesos no autorizados.</P>
-          </li>
-        </ul>
-      </li>
+			<!-- 3. Registro y Cuentas de Usuario -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>
+					Registro y Cuentas de Usuario
+				</h2>
+				<ul class='ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8'>
+					<li>
+						<P
+							><strong class='font-semibold'>Registro Simplificado:</strong> La creación
+							de una cuenta en nuestro Servicio se realiza mediante autenticación
+							con proveedores externos o métodos simplificados (por ejemplo, autenticación
+							vía número de teléfono). Al registrarte, aceptas proporcionar información
+							veraz y actualizada.
+						</P>
+					</li>
+					<li>
+						<P
+							><strong class='font-semibold'>Seguridad de la Cuenta:</strong> Eres
+							responsable de mantener la confidencialidad de tu cuenta y de todas
+							las actividades que ocurran bajo ella. Find My Miau no se hará responsable
+							por accesos no autorizados.</P
+						>
+					</li>
+				</ul>
+			</li>
 
-      <!-- 4.  Uso del Servicio -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold"> Uso del Servicio</h2>
-        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
-          <li>
-            <P><strong class="font-semibold">Uso Permitido:</strong> El Usuario se compromete a utilizar el Servicio de manera lícita y respetuosa. Queda prohibido utilizar el Servicio para actividades fraudulentas, ilegales o que puedan perjudicar a otros usuarios.
-            </P>
-          </li>
-          <li>
-            <P><strong class="font-semibold">Propiedad Intelectual:</strong> Todo el contenido y software del Servicio es propiedad de Find My Miau o de sus licenciantes. Queda estrictamente prohibido reproducir, distribuir o modificar cualquier parte del contenido sin autorización previa.</P>
-          </li>
-        </ul>
-      </li>
+			<!-- 4.  Uso del Servicio -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>Uso del Servicio</h2>
+				<ul class='ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8'>
+					<li>
+						<P
+							><strong class='font-semibold'>Uso Permitido:</strong> El Usuario se
+							compromete a utilizar el Servicio de manera lícita y respetuosa. Queda
+							prohibido utilizar el Servicio para actividades fraudulentas, ilegales
+							o que puedan perjudicar a otros usuarios.
+						</P>
+					</li>
+					<li>
+						<P
+							><strong class='font-semibold'>Propiedad Intelectual:</strong> Todo
+							el contenido y software del Servicio es propiedad de Find My Miau o
+							de sus licenciantes. Queda estrictamente prohibido reproducir, distribuir
+							o modificar cualquier parte del contenido sin autorización previa.</P
+						>
+					</li>
+				</ul>
+			</li>
 
-      <!-- 5. Contenido Generado por el Usuario -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Contenido Generado por el Usuario</h2>
-        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
-          <li>
-            <P><strong class="font-semibold">Responsabilidad del Contenido:</strong> Los usuarios son los únicos responsables del contenido que generen (perfiles de mascotas, imágenes, descripciones, etc.). Al publicar contenido en el Servicio, otorgas a Find My Miau una licencia no exclusiva para usar, reproducir y distribuir dicho contenido para el funcionamiento y promoción del Servicio.
-            </P>
-          </li>
-          <li>
-            <P><strong class="font-semibold">Moderación:</strong> Find My Miau se reserva el derecho de moderar o eliminar cualquier contenido que considere inapropiado, ofensivo o que viole estos Términos de Uso.</P>
-          </li>
-        </ul>
-      </li>
+			<!-- 5. Contenido Generado por el Usuario -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>
+					Contenido Generado por el Usuario
+				</h2>
+				<ul class='ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8'>
+					<li>
+						<P
+							><strong class='font-semibold'
+								>Responsabilidad del Contenido:</strong
+							> Los usuarios son los únicos responsables del contenido que generen
+							(perfiles de mascotas, imágenes, descripciones, etc.). Al publicar
+							contenido en el Servicio, otorgas a Find My Miau una licencia no exclusiva
+							para usar, reproducir y distribuir dicho contenido para el funcionamiento
+							y promoción del Servicio.
+						</P>
+					</li>
+					<li>
+						<P
+							><strong class='font-semibold'>Moderación:</strong> Find My Miau se
+							reserva el derecho de moderar o eliminar cualquier contenido que considere
+							inapropiado, ofensivo o que viole estos Términos de Uso.</P
+						>
+					</li>
+				</ul>
+			</li>
 
-      <!-- 6. Responsabilidad y Limitación de Responsabilidad -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold ">Responsabilidad y Limitación de Responsabilidad</h2>
-       
-        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
-          <li>
-            <P><strong class="font-semibold">Disponibilidad del Servicio:</strong> Nos esforzamos por mantener el Servicio disponible de forma continua, sin embargo, no garantizamos que el Servicio esté libre de interrupciones o errores.
-            </P>
-          </li>
-          <li>
-            <P><strong class="font-semibold">Exclusión de Garantías:</strong> El Servicio se proporciona "tal cual" y "según disponibilidad". Find My Miau no garantiza que la información sea precisa, completa o actualizada.</P>
-          </li>
-          <li>
-            <P><strong class="font-semibold">Limitación de Responsabilidad:</strong> En ningún caso, Find My Miau será responsable por daños directos, indirectos, incidentales, consecuentes o especiales derivados del uso o la imposibilidad de uso del Servicio.</P>
-          </li>
-        </ul>
-      </li>
+			<!-- 6. Responsabilidad y Limitación de Responsabilidad -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>
+					Responsabilidad y Limitación de Responsabilidad
+				</h2>
 
-      <!-- 7. Cambios en los Términos de Uso -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Cambios en los Términos de Uso</h2>
-        <P class="mt-8">Find My Miau se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Las modificaciones serán efectivas al publicarse en nuestro sitio web. El uso continuado del Servicio después de la publicación de los cambios implica la aceptación de los nuevos términos.</P>
-      </li>
+				<ul class='ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8'>
+					<li>
+						<P
+							><strong class='font-semibold'
+								>Disponibilidad del Servicio:</strong
+							> Nos esforzamos por mantener el Servicio disponible de forma continua,
+							sin embargo, no garantizamos que el Servicio esté libre de interrupciones
+							o errores.
+						</P>
+					</li>
+					<li>
+						<P
+							><strong class='font-semibold'>Exclusión de Garantías:</strong> El
+							Servicio se proporciona "tal cual" y "según disponibilidad". Find My
+							Miau no garantiza que la información sea precisa, completa o actualizada.</P
+						>
+					</li>
+					<li>
+						<P
+							><strong class='font-semibold'
+								>Limitación de Responsabilidad:</strong
+							> En ningún caso, Find My Miau será responsable por daños directos,
+							indirectos, incidentales, consecuentes o especiales derivados del uso
+							o la imposibilidad de uso del Servicio.</P
+						>
+					</li>
+				</ul>
+			</li>
 
-       <!-- 8. Terminación -->
-       <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Terminación</h2>
-        <P class="mt-8">Podemos suspender o terminar el acceso al Servicio en cualquier momento, sin previo aviso, si se detecta un uso indebido o violación de estos Términos de Uso. El Usuario puede también dar por terminada su cuenta en cualquier momento.</P>
-      </li>
+			<!-- 7. Cambios en los Términos de Uso -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>
+					Cambios en los Términos de Uso
+				</h2>
+				<P class='mt-8'
+					>Find My Miau se reserva el derecho de modificar estos Términos de Uso
+					en cualquier momento. Las modificaciones serán efectivas al publicarse
+					en nuestro sitio web. El uso continuado del Servicio después de la
+					publicación de los cambios implica la aceptación de los nuevos
+					términos.</P
+				>
+			</li>
 
-      <!-- 9. Ley Aplicable y Jurisdicción -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Ley Aplicable y Jurisdicción</h2>
-        <P class="mt-8">Estos Términos de Uso se regirán e interpretarán de acuerdo con las leyes del país en el que opere Find My Miau. Cualquier controversia derivada del uso del Servicio se someterá a la jurisdicción de los tribunales competentes de dicha jurisdicción.</P>
-      </li>
+			<!-- 8. Terminación -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>Terminación</h2>
+				<P class='mt-8'
+					>Podemos suspender o terminar el acceso al Servicio en cualquier
+					momento, sin previo aviso, si se detecta un uso indebido o violación
+					de estos Términos de Uso. El Usuario puede también dar por terminada
+					su cuenta en cualquier momento.</P
+				>
+			</li>
 
-      <!-- 10. Contacto -->
-      <li class="marker:font-semibold marker:text-4xl">
-        <h2 class="text-4xl inline font-semibold">Contacto</h2>
-        <P class="mt-4">Si tienes alguna pregunta o inquietud acerca de estos Términos de Uso, puedes contactarnos a través de:</P>
-        <ul class="ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8">
-          <li class="marker:text-base">
-            Correo electrónico: findmymiau@gmail.com
-          </li>
-        </ul>
-      </li>
-    </ol>
+			<!-- 9. Ley Aplicable y Jurisdicción -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>
+					Ley Aplicable y Jurisdicción
+				</h2>
+				<P class='mt-8'
+					>Estos Términos de Uso se regirán e interpretarán de acuerdo con las
+					leyes del país en el que opere Find My Miau. Cualquier controversia
+					derivada del uso del Servicio se someterá a la jurisdicción de los
+					tribunales competentes de dicha jurisdicción.</P
+				>
+			</li>
 
-    <hr />
-    <P class="my-10">Al utilizar nuestro Servicio, confirmas que has leído y aceptado estos Términos de Uso en su totalidad. Si no estás de acuerdo con estos términos, te pedimos que no utilices Find My Miau.</P>
-    <hr/>
-  </div>
+			<!-- 10. Contacto -->
+			<li class='marker:font-semibold marker:text-4xl'>
+				<h2 class='text-4xl inline font-semibold'>Contacto</h2>
+				<P class='mt-4'
+					>Si tienes alguna pregunta o inquietud acerca de estos Términos de
+					Uso, puedes contactarnos a través de:</P
+				>
+				<ul class='ml-4 list-disc space-y-6 [&>li]:marker:text-lg mt-8'>
+					<li class='marker:text-base'>
+						Correo electrónico: findmymiau@gmail.com
+					</li>
+				</ul>
+			</li>
+		</ol>
+
+		<hr />
+		<P class='my-10'
+			>Al utilizar nuestro Servicio, confirmas que has leído y aceptado estos
+			Términos de Uso en su totalidad. Si no estás de acuerdo con estos
+			términos, te pedimos que no utilices Find My Miau.</P
+		>
+		<hr />
+	</div>
 </Layout>

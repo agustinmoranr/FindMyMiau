@@ -1,0 +1,26 @@
+---
+import { Button } from "./ui/button";
+import { supabase } from "@/lib/supabaseClient";
+
+async function handleSignInWithGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "http://localhost:4321/auth/callback" ,
+      queryParams: {
+      access_type: 'offline',
+      prompt: 'consent',
+    },
+    },
+  })
+  if (data.url) {
+    Astro.redirect(data.url) // use the redirect API for your server framework
+  }
+}
+---
+
+<div>
+  <form>
+    <Button onClick={handleSignInWithGoogle}>Continuar con google</Button>
+  </form>
+</div>

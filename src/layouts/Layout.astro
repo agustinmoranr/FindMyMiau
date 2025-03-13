@@ -1,22 +1,26 @@
 ---
-import { Toaster } from "@/components/ui/toaster";
-import "../styles/global.css";
-import ErrorNotifier from "@/components/ErrorNotifier";
+import { Toaster } from '@/components/ui/toaster';
+import ErrorNotifier from '@/components/ErrorNotifier';
+import Navbar from '@/components/Navbar.astro';
+import '../styles/global.css';
+// Supports weights 400-800
+import '@fontsource-variable/baloo-2';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang='es'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='generator' content={Astro.generator} />
 		<title>Encuentra Tu Gato</title>
 	</head>
-	<body>
+	<body class='dark'>
+		<Navbar />
 		<slot />
-    <Toaster richColors client:load />
-    <ErrorNotifier client:idle />
+		<Toaster richColors client:load />
+		<ErrorNotifier client:idle />
 	</body>
 </html>
 

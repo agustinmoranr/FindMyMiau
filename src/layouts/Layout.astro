@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar.astro';
 import '../styles/global.css';
 // Supports weights 400-800
 import '@fontsource-variable/baloo-2';
+import Footer from '@/components/Footer.astro';
 ---
 
 <!doctype html>
@@ -19,6 +20,7 @@ import '@fontsource-variable/baloo-2';
 	<body class='dark'>
 		<Navbar />
 		<slot />
+		<Footer />
 		<Toaster richColors client:load />
 		<ErrorNotifier client:idle />
 	</body>

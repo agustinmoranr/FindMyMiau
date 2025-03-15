@@ -1,0 +1,129 @@
+---
+import { Badge } from './ui/badge';
+import { Image } from 'astro:assets';
+import { Card, CardContent } from './ui/card';
+import { Button } from './ui/button';
+import { ArrowRight } from 'lucide-react';
+import P from './ui/typography/P.astro';
+import Muted from './ui/typography/Muted.astro';
+import { H2, H3 } from './ui/typography/Headings';
+import CatCompany from './CatCompany.tsx';
+---
+
+{/* How It Works Section */}
+<section id='how-it-works' class='w-full py-12 md:py-24 lg:py-32'>
+	<div class='container mx-auto px-4 md:px-6'>
+		<div
+			class='flex flex-col items-center justify-center space-y-4 text-center mb-16'
+		>
+			<!-- <Badge className='bg-primary text-primary-foreground'
+				>Proceso Simple</Badge
+			> -->
+			<div class='space-y-2'>
+				<CatCompany size={250} className='mx-auto' client:idle />
+				<H2 className=''> ¿Cómo miaus Funciona esto? </H2>
+				<Muted
+					class='max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'
+				>
+					Tres sencillos pasos para crear una red de seguridad para tu querido
+					amigo felino.
+				</Muted>
+			</div>
+		</div>
+
+		<div class='grid gap-8 md:grid-cols-3'>
+			<div class='relative'>
+				<div class='relative flex flex-col items-center md:items-start'>
+					<div
+						class='flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xl z-10'
+					>
+						1
+					</div>
+					<div class='mt-6 space-y-4'>
+						<h3 class='text-xl font-bold text-center md:text-left'>
+							Crea un Perfil
+						</h3>
+						<Muted class='text-center md:text-left'>
+							Regístrate y crea un perfil detallado para tu gato con fotos,
+							descripción y tu información de contacto.
+						</Muted>
+					</div>
+				</div>
+			</div>
+
+			<div class='relative'>
+				<div class='relative flex flex-col items-center md:items-start'>
+					<div
+						class='flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xl z-10'
+					>
+						2
+					</div>
+					<div class='mt-6 space-y-4'>
+						<H3 className='text-xl font-bold text-center md:text-left'>
+							Obtén Tu Código QR
+						</H3>
+						<Muted class='text-center md:text-left'>
+							Recibe un código QR único enlazado con el perfil de tu gato.
+							Colócalo en su collar o placa de identificación.
+						</Muted>
+					</div>
+				</div>
+			</div>
+
+			<div class='relative'>
+				<div class='relative flex flex-col items-center md:items-start'>
+					<div
+						class='flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xl z-10'
+					>
+						3
+					</div>
+					<div class='mt-6 space-y-4'>
+						<H3 className='text-xl font-bold text-center md:text-left'>
+							Descansa tranquilo
+						</H3>
+						<Muted class='text-center md:text-left'>
+							Si su gato alguna vez se pierde, quien lo encuentre podrá escanear
+							el código QR para acceder a su información de contacto.
+						</Muted>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='mt-16 flex justify-center'>
+			<Card className='w-full max-w-4xl overflow-hidden py-0'>
+				<div class='md:grid md:grid-cols-2'>
+					<div class='relative aspect-video md:aspect-auto md:h-full'>
+						<Image
+							src='https://imgs.search.brave.com/If3CVQpxm5n0afpEMgz6KNQtxTA2btcv2w6PEIY_gLY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi9lL2VjL1FS/b3JnLnBuZy81MTJw/eC1RUm9yZy5wbmc'
+							alt='Código QR que se escanea para mostrar el perfil del gato.'
+							width={500}
+							height={500}
+							class='object-cover h-full w-full'
+						/>
+					</div>
+					<CardContent className='p-6 md:p-8 flex flex-col justify-center'>
+						<div class='space-y-4'>
+							<Badge className='bg-accent text-accent-foreground'
+								>Tecnología de Códigos QR</Badge
+							>
+							<H3 className=''> Acceso a la Información Instantáneo </H3>
+							<Muted>
+								Cuando una persona encuentre a tu gato, pueden simplemente
+								scanear el código QR con la cámara de su smartphone. No se
+								necesita alguna app especial. Inmediatamente podrán ver tu
+								información de contacto y cualquier detalle importante de tu
+								gato.
+							</Muted>
+							<div class='pt-4'>
+								<Button>
+									Haz una demo <ArrowRight className='!h-[18px] !w-[18px]' />
+								</Button>
+							</div>
+						</div>
+					</CardContent>
+				</div>
+			</Card>
+		</div>
+	</div>
+</section>

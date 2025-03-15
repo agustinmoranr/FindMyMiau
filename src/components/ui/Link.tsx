@@ -7,10 +7,7 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {}
 export default function Link({ children, className, ...props }: Props) {
 	return (
 		<a
-			className={cn(
-				'font-medium hover:opacity-90 transition-opacity ease-[ease]',
-				className,
-			)}
+			className={cn('hover:opacity-90 transition-opacity ease', className)}
 			{...props}>
 			{children}
 		</a>

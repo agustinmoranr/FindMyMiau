@@ -50,7 +50,7 @@
 	--popover: oklch(16.16% 0.025 170.32);
 	--popover-foreground: oklch(96.08% 0.025 171.97);
 	--primary: oklch(58.06% 0.095 220.84);
-	--primary-foreground: oklch(16.16% 0.025 170.32);
+	--primary-foreground: oklch(96.08% 0.025 171.97);
 	--secondary: oklch(44.63% 0.069 213.1);
 	--secondary-foreground: oklch(96.08% 0.025 171.97);
 	--muted: oklch(0.274 0.006 286.033);
@@ -121,10 +121,10 @@
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-foreground text-lg;
 	}
 
-	.font-baloo {
+	.balooFont {
 		font-family: var(--font-baloo);
 	}
 }

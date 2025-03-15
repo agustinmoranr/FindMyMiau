@@ -1,0 +1,206 @@
+---
+import { PawPrint } from 'lucide-react';
+import Link from './ui/Link';
+import Logo from './Logo.astro';
+---
+
+<footer class='w-full border-t bg-background'>
+	<div class='container mx-auto flex flex-col gap-6 py-8 md:py-12'>
+		<div class='flex flex-col gap-6 md:flex-row md:justify-between'>
+			<div class='flex flex-col gap-2'>
+				<!-- <div class='flex gap-2 items-center'>
+					<PawPrint className='h-6 w-6 text-primary' />
+					<span class='text-xl font-bold'>FindMyMiau</span>
+				</div> -->
+				<Logo />
+				<p class='text-sm text-muted-foreground'>
+					Conectando a los gatos perdidos con su hogar, desde 2025.
+				</p>
+			</div>
+			<div class='grid grid-cols-2 gap-10 sm:grid-cols-4'>
+				<div class='space-y-3'>
+					<h3 class='text-sm font-medium'>Plataforma</h3>
+					<ul class='space-y-2'>
+						<li>
+							<Link
+								href='#features'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Funcionalidades
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#how-it-works'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								¿Cómo Funciona?
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Precios
+							</Link>
+						</li>
+					</ul>
+				</div>
+				<div class='space-y-3'>
+					<h3 class='text-sm font-medium'>Recursos</h3>
+					<ul class='space-y-2'>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Tips de Cuidados para Gatos
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Guía para Gatos Extraviados
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Foro de la Comunidad
+							</Link>
+						</li>
+					</ul>
+				</div>
+				<div class='space-y-3'>
+					<h3 class='text-sm font-medium'>Compañía</h3>
+					<ul class='space-y-2'>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Sobre Nosotros
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Contacto
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Historia
+							</Link>
+						</li>
+					</ul>
+				</div>
+				<div class='space-y-3'>
+					<h3 class='text-sm font-medium'>Legal</h3>
+					<ul class='space-y-2'>
+						<li>
+							<Link
+								href='/privacidad'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Política de Privacidad
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='/terminos-de-uso'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Términos de servicio
+							</Link>
+						</li>
+						<li>
+							<Link
+								href='#'
+								className='text-sm text-muted-foreground hover:text-foreground'
+							>
+								Política de Cookies
+							</Link>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div
+			class='flex flex-col gap-4 sm:flex-row justify-between items-center border-t pt-6'
+		>
+			<p class='text-xs text-muted-foreground'>
+				&copy; {new Date().getFullYear()} FindMyMiau. Todos los derechos reservados.
+			</p>
+			<div class='flex gap-4'>
+				<Link href='#' className='text-muted-foreground hover:text-foreground'>
+					<span class='sr-only'>Twitter</span>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						width='24'
+						height='24'
+						viewBox='0 0 24 24'
+						fill='none'
+						stroke='currentColor'
+						stroke-width='2'
+						stroke-linecap='round'
+						stroke-linejoin='round'
+						class='h-5 w-5'
+					>
+						<path
+							d='M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z'
+						></path>
+					</svg>
+				</Link>
+				<Link href='#' className='text-muted-foreground hover:text-foreground'>
+					<span class='sr-only'>Instagram</span>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						width='24'
+						height='24'
+						viewBox='0 0 24 24'
+						fill='none'
+						stroke='currentColor'
+						stroke-width='2'
+						stroke-linecap='round'
+						stroke-linejoin='round'
+						class='h-5 w-5'
+					>
+						<rect width='20' height='20' x='2' y='2' rx='5' ry='5'></rect>
+						<path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z'></path>
+						<line x1='17.5' x2='17.51' y1='6.5' y2='6.5'></line>
+					</svg>
+				</Link>
+				<Link href='#' className='text-muted-foreground hover:text-foreground'>
+					<span class='sr-only'>Facebook</span>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						width='24'
+						height='24'
+						viewBox='0 0 24 24'
+						fill='none'
+						stroke='currentColor'
+						stroke-width='2'
+						stroke-linecap='round'
+						stroke-linejoin='round'
+						class='h-5 w-5'
+					>
+						<path
+							d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'
+						></path>
+					</svg>
+				</Link>
+			</div>
+		</div>
+	</div>
+</footer>

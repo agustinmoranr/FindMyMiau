@@ -1,11 +1,14 @@
 ---
-import { Check } from 'lucide-react';
-import { Button } from './ui/button';
+import { Check, PawPrint } from 'lucide-react';
+import { Button, buttonVariants } from './ui/button';
 import { Image } from 'astro:assets';
 import { Badge } from './ui/badge';
 import HeroImage from '@/assets/findmymiau-hero-image-2.png';
 import HeroImage2 from '@/assets/cat-pc-meme.png';
 import { H1 } from './ui/typography/Headings.tsx';
+import P from './ui/typography/P.astro';
+import Link from './ui/Link';
+import { cn } from '@/lib/utils';
 ---
 
 <section
@@ -17,27 +20,44 @@ import { H1 } from './ui/typography/Headings.tsx';
 	</div>
 	<div class='container px-4 md:px-6 mx-auto'>
 		<div
-			class='grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]'
+			class='grid gap-12 sm:gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]'
 		>
-			<div class='flex flex-col justify-center space-y-8'>
+			<div class='flex flex-col justify-center space-y-8 order-1 sm:order-0'>
 				<Badge className='w-fit bg-accent text-accent-foreground'
-					>Peace of Mind for Cat Owners</Badge
+					>Tranquilidad para los dueños de gatos</Badge
 				>
 				<div class='space-y-4'>
 					<H1 className=''>
 						Mantén tu gato seguro con un perfil de identificación digital
 					</H1>
-					<p class='max-w-[600px] text-muted-foreground md:text-xl'>
+					<P class='max-w-[600px] text-muted-foreground md:text-xl'>
 						Crea un perfil digital con un código QR único para tu gato. Si
 						alguna vez se pierde, quien lo encuentre podrá escanear el código
 						para acceder a tu información de contacto.
-					</p>
+					</P>
 				</div>
-				<div class='flex flex-col gap-2 min-[400px]:flex-row'>
-					<Button size='lg'>Crear el perfil de tu gato</Button>
-					<Button size='lg' variant='outline'> Cómo Funciona </Button>
+				<div class='flex flex-col gap-2 min-[460px]:flex-row'>
+					<Button size='lg' variant='secondary'> ¿Cómo Funciona? </Button>
+					<Link
+						href='/register'
+						className={cn(
+							buttonVariants({ size: 'lg' }),
+							'flex items-center hover:-translate-y-[3px] hover:shadow-[0_20px_80px_-10px_var(--primary)]',
+						)}
+					>
+						<span>Crea el perfil de tu gato</span>
+						<span
+							><PawPrint
+								fill='var(--foreground)'
+								stroke='var(--foreground)'
+								className='!w-[18px] !h-[18px]'
+							/></span
+						>
+					</Link>
 				</div>
-				<div class='flex items-center space-x-4 text-sm text-muted-foreground'>
+				<div
+					class='flex items-center space-x-2 sm:space-x-4 text-base text-muted-foreground flex-wrap'
+				>
 					<div class='flex items-center'>
 						<Check className='mr-1 h-4 w-4 text-primary' />
 						<span>Perfiles básicos gratuitos</span>
@@ -52,18 +72,14 @@ import { H1 } from './ui/typography/Headings.tsx';
 					</div>
 				</div>
 			</div>
-			<div class='flex items-center justify-center'>
-				<div class='relative h-[450px] w-[450px]'>
-					<div
-						class='absolute inset-0 flex items-center justify-center bg-primary rounded-full ring-8 ring-foreground'
-					>
-						<Image
-							src={HeroImage}
-							alt='Gato con collar con etiqueta de código QR'
-							class='object-cover rounded-full translate-y-[26px] scale-x-[-1]'
-						/>
-					</div>
-				</div>
+			<div
+				class='sm:h-[450px] sm:w-[450px] bg-primary rounded-full ring-8 ring-foreground'
+			>
+				<Image
+					src={HeroImage}
+					alt='Gato con collar con etiqueta de código QR'
+					class='object-cover translate-y-[26px] scale-x-[-1]'
+				/>
 			</div>
 		</div>
 	</div>

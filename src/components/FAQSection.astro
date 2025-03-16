@@ -1,0 +1,82 @@
+---
+import { Badge } from '@/components/ui/badge';
+import { H2 } from '@/components/ui/typography/Headings';
+import Muted from '@/components/ui/typography/Muted.astro';
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '@/components/ui/accordion';
+import { AccordionWrapper } from './AccordionWrapper';
+---
+
+{/* FAQ Section */}
+<section id='faq' class='w-full py-12 md:py-24 lg:py-32 bg-accent/10'>
+	<div class='container mx-auto px-4 md:px-6'>
+		<div
+			class='flex flex-col items-center justify-center space-y-4 text-center mb-12'
+		>
+			<Badge className='bg-primary text-primary-foreground'>FAQ</Badge>
+			<div class='space-y-2'>
+				<H2
+					className='text-3xl font-bold tracking-tighter sm:text-5xl text-foreground'
+				>
+					Preguntas Frecuentes
+				</H2>
+				<Muted
+					class='max-w-[900px] mx-auto md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'
+				>
+					Todo lo que necesitas saber sobre FindMyMiau
+				</Muted>
+			</div>
+		</div>
+
+		<div class='mx-auto max-w-3xl'>
+			<AccordionWrapper
+				client:load
+				items={[
+					{
+						question: '¿Cuánto cuesta FindMyMiau?',
+						answer:
+							'FindMyMiau ofrece un plan básico gratuito que incluye un perfil de gato con información esencial y un código QR. Los planes premium comienzan desde $4.99 al mes e incluyen varios perfiles de gato, etiquetas QR personalizadas, alertas comunitarias y almacenamiento de historiales médicos.',
+						value: 'item-1',
+					},
+					{
+						question: '¿Cómo coloco el código QR en el collar de mi gato?',
+						answer:
+							'Después de crear el perfil de tu gato, puedes imprimir el código QR en casa e insertarlo en un portaetiquetas impermeable (disponible en nuestra tienda) o pedir una etiqueta grabada personalizada directamente a través de nuestro servicio. La etiqueta se adhiere a cualquier collar estándar para gatos.',
+						value: 'item-2',
+					},
+					{
+						question: '¿Está segura mi información personal?',
+						answer:
+							'¡Sí! Tú controlas exactamente qué información es visible para quien escanee el código QR de tu gato. Puedes elegir mostrar solo tu nombre y número de teléfono, o configurar el sistema para que te notifique cuando alguien escanee el código sin mostrar tus datos de contacto.',
+						value: 'item-3',
+					},
+					{
+						question: '¿Qué pasa si mi gato no lleva collar?',
+						answer:
+							'Aunque un collar con etiqueta QR es el método más efectivo, también ofrecemos soluciones alternativas. Puede registrar el número de microchip de su gato en nuestro sistema, y ​​los veterinarios o refugios pueden buscarlo en nuestra base de datos. También ofrecemos pegatinas QR impermeables para transportines y tarjetas de identificación personalizadas para su billetera.',
+						value: 'item-4',
+					},
+					{
+						question: '¿Puedo utilizar FindMyMiau para otras mascotas?',
+						answer:
+							'Aunque nuestro servicio está optimizado para gatos, muchos clientes utilizan FindMyMiau con éxito para perros, conejos y otras mascotas. El proceso de creación de perfiles es el mismo y los códigos QR funcionan de forma idéntica independientemente del tipo de mascota.',
+						value: 'item-5',
+					},
+					{
+						question:
+							'¿Qué pasa si alguien encuentra a mi gato pero no tiene un teléfono inteligente?',
+						answer:
+							'Nuestras etiquetas premium incluyen un número de identificación único y la dirección de nuestro sitio web impresa directamente en la etiqueta. Cualquiera puede visitar nuestro sitio web e introducir este número para acceder al perfil de su gato, incluso sin escanear el código QR.',
+						value: 'item-6',
+					},
+
+					// Add the rest of your FAQ items here
+				]}
+			/>
+		</div>
+	</div>
+</section>

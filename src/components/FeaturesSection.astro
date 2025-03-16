@@ -1,0 +1,137 @@
+---
+import { Badge } from '@/components/ui/badge';
+import { H2 } from '@/components/ui/typography/Headings';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Bell, Cat, QrCode, Search, Shield, Smartphone } from 'lucide-react';
+import Muted from '@/components/ui/typography/Muted.astro';
+---
+
+<section id='features' class='w-full py-12 md:py-24 lg:py-32 bg-secondary/10'>
+	<div class='container mx-auto px-4 md:px-6'>
+		<div
+			class='flex flex-col items-center justify-center space-y-4 text-center'
+		>
+			<Badge className='bg-secondary text-secondary-foreground'
+				>Funcionalidades Principales</Badge
+			>
+			<div class='space-y-2'>
+				<H2
+					className='text-3xl font-bold tracking-tighter sm:text-5xl text-foreground'
+				>
+					Todo lo que necesitas para mantener a tu gato a salvo
+				</H2>
+				<Muted
+					class='max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto'
+				>
+					FindMyMiau ofrece herramientas esenciales para ayudarle a reunirse con
+					su gato si alguna vez se pierde.
+				</Muted>
+			</div>
+		</div>
+		<div
+			class='mx-auto grid max-w-5xl items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full'
+		>
+			<Card className='bg-background/50 backdrop-blur-sm border-primary/20'>
+				<CardHeader>
+					<div
+						class='rounded-full bg-primary/20 p-3 w-12 h-12 flex items-center justify-center mb-4'
+					>
+						<Cat className='h-6 w-6 text-primary' />
+					</div>
+					<CardTitle>Creación de perfiles de gatos</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Muted>
+						Crea un perfil detallado de tu gato que incluya fotos,
+						características físicas, necesidades médicas y tu información de
+						contacto.
+					</Muted>
+				</CardContent>
+			</Card>
+			<Card className='bg-background/50 backdrop-blur-sm border-primary/20'>
+				<CardHeader>
+					<div
+						class='rounded-full bg-primary/20 p-3 w-12 h-12 flex items-center justify-center mb-4'
+					>
+						<QrCode className='h-6 w-6 text-primary' />
+					</div>
+					<CardTitle>Generador de códigos QR</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Muted>
+						Recibe un código QR único que enlaza con el perfil de tu gato.
+						Colócalo en su collar para identificarlo rápidamente si lo
+						encuentran.
+					</Muted>
+				</CardContent>
+			</Card>
+			<Card className='bg-background/50 backdrop-blur-sm border-primary/20'>
+				<CardHeader>
+					<div
+						class='rounded-full bg-primary/20 p-3 w-12 h-12 flex items-center justify-center mb-4'
+					>
+						<Search className='h-6 w-6 text-primary' />
+					</div>
+					<CardTitle>Acceso instantáneo a la información</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Muted>
+						Cualquier persona que encuentre a su gato podrá escanear el código
+						QR para acceder inmediatamente a sus datos de contacto e información
+						importante sobre su mascota.
+					</Muted>
+				</CardContent>
+			</Card>
+			<Card className='bg-background/50 backdrop-blur-sm border-primary/20'>
+				<CardHeader>
+					<div
+						class='rounded-full bg-primary/20 p-3 w-12 h-12 flex items-center justify-center mb-4'
+					>
+						<Bell className='h-6 w-6 text-primary' />
+					</div>
+					<CardTitle>Alertas de gatos perdidos</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Muted>
+						Marca a tu gato como perdido para activar las alertas de la
+						comunidad. Los usuarios cercanos recibirán una notificación para que
+						estén atentos a tu mascota perdida.
+					</Muted>
+				</CardContent>
+			</Card>
+			<Card className='bg-background/50 backdrop-blur-sm border-primary/20'>
+				<CardHeader>
+					<div
+						class='rounded-full bg-primary/20 p-3 w-12 h-12 flex items-center justify-center mb-4'
+					>
+						<Shield className='h-6 w-6 text-primary' />
+					</div>
+					<CardTitle>Protección de la privacidad</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Muted>
+						Tú controlas qué información es visible. Elige mostrar solo lo
+						necesario para que tu gato regrese sano y salvo.
+					</Muted>
+				</CardContent>
+			</Card>
+			<Card className='bg-background/50 backdrop-blur-sm border-primary/20'>
+				<CardHeader>
+					<div
+						class='rounded-full bg-primary/20 p-3 w-12 h-12 flex items-center justify-center mb-4'
+					>
+						<Smartphone className='h-6 w-6 text-primary' />
+					</div>
+					<CardTitle>Acceso a la aplicación móvil</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Muted>
+						Gestiona el perfil de tu gato desde cualquier lugar con nuestra app
+						móvil. Actualiza la información y responde rápidamente si lo
+						encuentras.
+					</Muted>
+				</CardContent>
+			</Card>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,96 @@
+---
+import { Badge } from '@/components/ui/badge';
+import { H2, H3 } from '@/components/ui/typography/Headings';
+import { Card, CardContent } from '@/components/ui/card';
+import { Star } from 'lucide-react';
+import Muted from '@/components/ui/typography/Muted.astro';
+import { Image } from 'astro:assets';
+---
+
+{/* Testimonials Section */}
+<section id='testimonials' class='w-full py-12 md:py-24 lg:py-32'>
+	<div class='container mx-auto px-4 md:px-6'>
+		<div
+			class='flex flex-col items-center justify-center space-y-4 text-center mb-12'
+		>
+			<Badge className='bg-accent text-accent-foreground'
+				>Historias de Éxito</Badge
+			>
+			<div class='space-y-2'>
+				<H2
+					className='text-3xl font-bold tracking-tighter sm:text-5xl text-foreground'
+				>
+					Escucha a los dueños de gatos felices
+				</H2>
+				<Muted
+					class='max-w-[900px] mx-auto md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'
+				>
+					Historias reales de dueños de gatos que han usado FindMyMiau para
+					mantener a sus mascotas seguras.
+				</Muted>
+			</div>
+		</div>
+
+		<div class='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
+			{
+				[
+					{
+						name: 'Sarah Johnson',
+						location: 'Portland, OR',
+						image: '/placeholder.svg?height=100&width=100&text=Sarah',
+						quote:
+							'Mi gato Whiskers se escapó durante una tormenta, pero gracias a su etiqueta FindMyMiau, regresó a casa en cuestión de horas. ¡La persona que lo encontró simplemente escaneó el código QR y me llamó de inmediato!',
+						rating: 5,
+					},
+					{
+						name: 'Michael Chen',
+						location: 'Chicago, IL',
+						image: '/placeholder.svg?height=100&width=100&text=Michael',
+						quote:
+							'Al principio era escéptica, pero cuando mi gata de interior se escapó, su perfil de FindMyMiau lo cambió todo. Un vecino la encontró y supo exactamente a quién contactar. ¡Valió cada centavo!',
+						rating: 5,
+					},
+					{
+						name: 'Emma Rodriguez',
+						location: 'Miami, FL',
+						image: '/placeholder.svg?height=100&width=100&text=Emma',
+						quote:
+							'La tranquilidad que me da saber que mis tres gatos tienen perfiles de FindMyMiau es invaluable. Las etiquetas QR son resistentes y los perfiles fueron facilísimos de configurar. ¡Los recomiendo muchísimo!',
+						rating: 4,
+					},
+				].map((testimonial, i) => (
+					<Card key={i} className='overflow-hidden'>
+						<CardContent className='p-6'>
+							<div class='flex items-center gap-4 mb-4'>
+								<div class='rounded-full overflow-hidden h-16 w-16'>
+									<Image
+										src={testimonial.image || '/placeholder.svg'}
+										alt={testimonial.name}
+										width={64}
+										height={64}
+										class='object-cover'
+									/>
+								</div>
+								<div>
+									<H3 className='font-bold'>{testimonial.name}</H3>
+									<Muted class='text-sm'>{testimonial.location}</Muted>
+								</div>
+							</div>
+							<div class='flex mb-4'>
+								{Array(5)
+									.fill(0)
+									.map((_, i) => (
+										<Star
+											key={i}
+											className={`h-4 w-4 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-muted'}`}
+										/>
+									))}
+							</div>
+							<Muted class='italic'>"{testimonial.quote}"</Muted>
+						</CardContent>
+					</Card>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -36,7 +36,6 @@ function useIntersectionObserver<T extends Element>({
 		// Create the callback outside of the IntersectionObserver constructor
 		const observerCallback: IntersectionObserverCallback = (entries) => {
 			entries.forEach((entry) => {
-				console.log(entry);
 				const isElementIntersecting = entry.isIntersecting;
 
 				setIsIntersecting(isElementIntersecting);

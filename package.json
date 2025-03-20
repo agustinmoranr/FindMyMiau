@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"@astrojs/react": "^4.2.1",
-		"@astrojs/vercel": "^8.1.1",
+		"@astrojs/vercel": "^8.1.2",
 		"@auth/core": "^0.37.4",
 		"@fontsource-variable/baloo-2": "^5.2.5",
 		"@hookform/resolvers": "^4.1.3",

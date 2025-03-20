@@ -1,12 +1,10 @@
 'use client';
-import { useState } from 'react';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { capitalize, cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Image } from 'astro:assets';
 import {
 	Form,
 	FormControl,
@@ -24,7 +22,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { CalendarIcon, CloudUpload, Paperclip } from 'lucide-react';
+import { CalendarIcon, CloudUpload } from 'lucide-react';
 import {
 	FileInput,
 	FileUploader,

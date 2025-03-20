@@ -4,8 +4,8 @@ import {
 	uuid,
 	varchar,
 	pgEnum,
-	integer,
 	jsonb,
+	date,
 } from 'drizzle-orm/pg-core';
 
 import { userTable } from './users';
@@ -21,6 +21,18 @@ export const genders = ['macho', 'hembra'] as const;
 export type Genders = (typeof genders)[number];
 export const gendersEnum = pgEnum('genders', genders);
 
+export const birthDateAccuracyValues = [
+	'exact',
+	'month_year',
+	'year_only',
+	'estimated',
+] as const;
+export type BirthDateAccuracy = (typeof birthDateAccuracyValues)[number];
+export const birthDateAccuracyEnum = pgEnum(
+	'birth_date_accuracy',
+	birthDateAccuracyValues,
+);
+
 export const petTable = pgTable('pets_table', {
 	id,
 	user_id: uuid('user_id')
@@ -29,7 +41,8 @@ export const petTable = pgTable('pets_table', {
 	name: varchar('name', { length: 100 }).notNull(),
 	species: petSpeciesEnum('species').notNull(),
 	raza: varchar('raza', { length: 50 }),
-	age: integer('age'),
+	birth_date: date('birth_date'),
+	birth_date_accuracy: birthDateAccuracyEnum('birth_date_accuracy'),
 	gender: gendersEnum('gender'),
 	description: text('description'),
 	main_contact_number_id: uuid('main_contact_number_id')

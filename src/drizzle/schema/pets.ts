@@ -13,7 +13,7 @@ import { petImagesTable } from './petImages';
 import { createdAt, id, updatedAt } from '../schemaHelpers';
 import { petContactNumbersTable } from './petContactNumbers';
 
-export const petSpecies = ['perro', 'gato', 'ave', 'otro'] as const;
+export const petSpecies = ['gato', 'perro', 'ave', 'otro'] as const;
 export type PetSpecies = (typeof petSpecies)[number];
 export const petSpeciesEnum = pgEnum('pet_species', petSpecies);
 

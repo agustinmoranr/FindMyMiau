@@ -1,13 +1,12 @@
 ---
-import { Check, PawPrint } from 'lucide-react';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Image } from 'astro:assets';
 import { Badge } from '@/components/ui/badge';
 import HeroImage from '@/assets/findmymiau-hero-image-2.png';
 import { H1 } from '@/components/ui/typography/Headings.tsx';
 import P from '@/components/ui/typography/P.astro';
-import Link from '@/components/ui/Link';
-import { cn } from '@/lib/utils';
+import CTAButton from '../CTAButton.astro';
 ---
 
 <section
@@ -37,22 +36,14 @@ import { cn } from '@/lib/utils';
 				</div>
 				<div class='flex flex-col gap-2 min-[460px]:flex-row'>
 					<Button size='lg' variant='secondary'> ¿Cómo Funciona? </Button>
-					<Link
-						href='/register'
-						className={cn(
-							buttonVariants({ size: 'lg' }),
-							'flex items-center hover:-translate-y-[3px] hover:shadow-[0_20px_80px_-10px_var(--primary)]',
-						)}
+					<CTAButton
+						PawPrintProps={{
+							className: '!size-[18px]',
+						}}
+						buttonVariantProps={{ size: 'lg' }}
 					>
-						<span>Crea el perfil de tu gato</span>
-						<span
-							><PawPrint
-								fill='var(--foreground)'
-								stroke='var(--foreground)'
-								className='!w-[18px] !h-[18px]'
-							/></span
-						>
-					</Link>
+						Crea el perfil de tu gato
+					</CTAButton>
 				</div>
 				<div
 					class='flex items-center space-x-2 sm:space-x-4 text-base text-muted-foreground flex-wrap'

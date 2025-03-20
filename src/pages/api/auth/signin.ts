@@ -3,17 +3,28 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../../lib/supabaseClient';
 import type { Provider } from '@supabase/supabase-js';
+import { ROUTES } from '@/lib/routes';
 
 const PUBLIC_DOMAIN_URL = import.meta.env.PUBLIC_DOMAIN_URL;
 
-export const POST: APIRoute = async ({ request, cookies, redirect }) => {
+export const POST: APIRoute = async ({ request, url, cookies, redirect }) => {
+	const hasRedirectParam = url.searchParams.has('redirect');
+	const redirectParam = url.searchParams.get('redirect') ?? '';
+
+	const apiSignInCallbackUrl = `${PUBLIC_DOMAIN_URL}${ROUTES.API_SIGN_IN_CALLBACK}`;
+	const urlWithRedirect = `${apiSignInCallbackUrl}?redirect=${encodeURIComponent(
+		redirectParam,
+	)}`;
+
 	const formData = await request.formData();
 	// const email = formData.get('email')?.toString();
 	// const password = formData.get('password')?.toString();
 	const provider = formData.get('provider')?.toString();
 	const validProviders = ['google', 'facebook'];
 	if (provider && validProviders.includes(provider)) {
-		const redirectTo = `${PUBLIC_DOMAIN_URL}/api/auth/callback`;
+		const redirectTo = hasRedirectParam
+			? urlWithRedirect
+			: apiSignInCallbackUrl;
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: provider as Provider,
 			options: {
@@ -48,5 +59,5 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 	// cookies.set('sb-refresh-token', refresh_token, {
 	// 	path: '/',
 	// });
-	return redirect('/dashboard');
+	return redirect(hasRedirectParam ? redirectParam : ROUTES.DASHBOARD);
 };

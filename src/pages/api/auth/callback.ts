@@ -1,10 +1,13 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../../lib/supabaseClient';
 import { createUser, getUserByEmail } from '@/drizzle/queries/user';
+import { ROUTES } from '@/lib/routes';
 
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 	try {
 		const authCode = url.searchParams.get('code');
+		const hasRedirectParam = url.searchParams.has('redirect');
+		const redirectParam = url.searchParams.get('redirect') ?? '';
 
 		if (!authCode) {
 			console.error('No code provided', { authCode });
@@ -48,9 +51,9 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 			path: '/',
 		});
 
-		return redirect('/dashboard');
+		return redirect(hasRedirectParam ? redirectParam : ROUTES.DASHBOARD);
 	} catch (error: any) {
 		console.error('Unhandled error in callback:', error);
-		return redirect('/signin?signin_error=unexpected_error');
+		return redirect(`${ROUTES.LOGIN}?signin_error=unexpected_error`);
 	}
 };

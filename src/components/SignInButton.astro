@@ -1,0 +1,20 @@
+---
+import Link from '@/components/ui/Link';
+import { ROUTES } from '@/lib/routes';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+const hasSession = Boolean(Astro.locals.session);
+---
+
+<a
+	href={hasSession ? ROUTES.API_SIGN_OUT : ROUTES.LOGIN}
+	class={cn(
+		buttonVariants({
+			variant: 'outline',
+		}),
+		'font-medium text-sm',
+	)}
+>
+	{hasSession ? 'Cerrar sesión' : 'Inicia sesión'}
+</a>

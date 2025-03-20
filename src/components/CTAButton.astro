@@ -1,0 +1,49 @@
+---
+import { ROUTES } from '@/lib/routes';
+import {
+	buttonVariants,
+	type ButtonVariantProps,
+} from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { PawPrint, type LucideProps } from 'lucide-react';
+
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	PawPrintProps?: LucideProps;
+	elevationEffectHover?: boolean;
+	shadowEffectHover?: boolean;
+	buttonVariantProps?: ButtonVariantProps;
+}
+
+const hasSession = Boolean(Astro.locals.session);
+let {
+	PawPrintProps,
+	class: classProp,
+	buttonVariantProps,
+	elevationEffectHover = true,
+	shadowEffectHover = true,
+	...props
+} = Astro.props;
+---
+
+<a
+	href={hasSession
+		? ROUTES.DASHBOARD
+		: `${ROUTES.LOGIN}?redirect=${encodeURIComponent(ROUTES.DASHBOARD)}`}
+	class={cn(
+		buttonVariants({ ...buttonVariantProps }),
+		'flex items-center',
+		{ 'hover:shadow-[0_20px_80px_-10px_var(--primary)]': shadowEffectHover },
+		{ 'hover:-translate-y-[3px]': elevationEffectHover },
+		classProp,
+	)}
+	{...props}
+>
+	<span><slot /></span>
+	<span
+		><PawPrint
+			fill='var(--foreground)'
+			stroke='var(--foreground)'
+			{...PawPrintProps}
+		/>
+	</span>
+</a>

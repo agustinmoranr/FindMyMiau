@@ -2,10 +2,8 @@
 import { Badge } from '@/components/ui/badge';
 import { H2 } from '@/components/ui/typography/Headings';
 import Muted from '@/components/ui/typography/Muted.astro';
-import { Button, buttonVariants } from '@/components/ui/button';
-import Link from '@/components/ui/Link';
-import { cn } from '@/lib/utils';
-import { PawPrint } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import CTAButton from '../CTAButton.astro';
 ---
 
 {/* CTA Section */}
@@ -28,22 +26,9 @@ import { PawPrint } from 'lucide-react';
 			<div class='flex flex-col sm:flex-row gap-4 justify-center pt-6'>
 				<Button size='lg' variant='outline'> Explora Funciones Premium </Button>
 
-				<Link
-					href='/register'
-					className={cn(
-						buttonVariants({ size: 'lg' }),
-						'flex items-center hover:-translate-y-[3px] hover:shadow-[0_20px_80px_-10px_var(--primary)]',
-					)}
-				>
-					<span>Crea el perfil de tu gato</span>
-					<span
-						><PawPrint
-							fill='var(--foreground)'
-							stroke='var(--foreground)'
-							className='!w-[18px] !h-[18px]'
-						/></span
-					>
-				</Link>
+				<CTAButton buttonVariantProps={{ size: 'lg' }}>
+					Crea el perfil de tu gato
+				</CTAButton>
 			</div>
 			<Muted class='text-sm text-muted-foreground pt-4'>
 				No se requiere tarjeta de crédito para los perfiles básicos. Se

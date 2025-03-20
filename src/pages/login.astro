@@ -1,17 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GoogleAuthButton from '@/components/GoogleAuthButton.astro';
-import FacebookAuthButton from '@/components/FacebookAuthButton.astro';
+// import FacebookAuthButton from '@/components/FacebookAuthButton.astro';
 import Link from '@/components/ui/Link';
+import { ROUTES } from '@/lib/routes';
 
-const { cookies, redirect } = Astro;
+const hasSession = Boolean(Astro.locals.session);
 
-const accessToken = cookies.get('sb-access-token');
-const refreshToken = cookies.get('sb-refresh-token');
-
-if (accessToken && refreshToken) {
-	return redirect('/dashboard');
+if (hasSession) {
+	return Astro.redirect(ROUTES.DASHBOARD);
 }
+
+const url = new URL(Astro.request.url);
+const hasRedirectParam = url.searchParams.has('redirect');
+
+const formAction = hasRedirectParam
+	? `${ROUTES.API_SIGN_IN}?redirect=${encodeURIComponent(url.searchParams.get('redirect') ?? '')}`
+	: ROUTES.API_SIGN_IN;
 ---
 
 <Layout title='Sign in'>
@@ -26,7 +31,7 @@ if (accessToken && refreshToken) {
 			</header>
 			<hr class='h-[1px] bg-zinc-500/20 w-[275px]' />
 			<form
-				action='/api/auth/signin'
+				action={formAction}
 				method='post'
 				class='flex flex-col w-[275px] gap-4 justify-center'
 			>

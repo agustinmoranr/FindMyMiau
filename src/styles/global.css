@@ -128,3 +128,7 @@
 		font-family: var(--font-baloo);
 	}
 }
+
+html {
+	scrollbar-gutter: stable;
+}

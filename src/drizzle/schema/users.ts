@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm';
 import {
 	boolean,
 	pgPolicy,
@@ -5,10 +6,9 @@ import {
 	text,
 	timestamp,
 } from 'drizzle-orm/pg-core';
-import { createdAt, id, updatedAt } from '../schemaHelpers';
-import { sql } from 'drizzle-orm';
 // import { userImagesTable } from './userImages';
 import { authenticatedRole } from 'drizzle-orm/supabase';
+import { createdAt, id, updatedAt } from '../schemaHelpers';
 
 export const usersTable = pgTable(
 	'users_table',
@@ -34,13 +34,13 @@ export const usersTable = pgTable(
 		}),
 
 		// Policy for SELECT - everyone can see the user data, while its profile be public
-		pgPolicy('owners_can_view_their_data', {
+		pgPolicy('users_can_view_their_data_if_public_profile', {
 			as: 'permissive',
 			for: 'select',
 			using: sql`${table.is_public} = true`,
 		}),
 
-		// Only owners can modify their user images
+		// Only owners can modify their own data
 		pgPolicy('owners_can_modify_data', {
 			as: 'permissive',
 			to: authenticatedRole,

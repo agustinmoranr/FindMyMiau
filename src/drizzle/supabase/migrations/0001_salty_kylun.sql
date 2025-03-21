@@ -1,0 +1,2 @@
+CREATE POLICY "owners_can_view_their_data" ON "users_table" AS PERMISSIVE FOR SELECT TO "authenticated" USING (auth.uid() = "users_table"."id");--> statement-breakpoint
+CREATE POLICY "users_can_view_their_data_if_public_profile" ON "users_table" AS PERMISSIVE FOR SELECT TO public USING ("users_table"."is_public" = true);

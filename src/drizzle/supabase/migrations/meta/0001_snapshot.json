@@ -1,6 +1,6 @@
 {
-  "id": "93438f93-1243-4f79-a44f-49a8132c0616",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "d5c39bcb-abeb-4b03-9953-84b0d1331221",
+  "prevId": "93438f93-1243-4f79-a44f-49a8132c0616",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -93,6 +93,24 @@
         }
       },
       "policies": {
+        "owners_can_view_their_data": {
+          "name": "owners_can_view_their_data",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "authenticated"
+          ],
+          "using": "auth.uid() = \"users_table\".\"id\""
+        },
+        "users_can_view_their_data_if_public_profile": {
+          "name": "users_can_view_their_data_if_public_profile",
+          "as": "PERMISSIVE",
+          "for": "SELECT",
+          "to": [
+            "public"
+          ],
+          "using": "\"users_table\".\"is_public\" = true"
+        },
         "owners_can_modify_data": {
           "name": "owners_can_modify_data",
           "as": "PERMISSIVE",

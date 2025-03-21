@@ -8,7 +8,7 @@ import { userPhoneNumbersTable } from '../userPhoneNumbers';
 import { petUserPhoneNumbersTable } from '../pet_userPhoneNumbers';
 
 // Define relations for the users table
-export const userRelations = relations(usersTable, ({ many }) => ({
+export const userRelations = relations(usersTable, ({ many, one }) => ({
 	// A user can have many entries in the user_images table
 	userImages: many(userImagesTable),
 
@@ -17,6 +17,12 @@ export const userRelations = relations(usersTable, ({ many }) => ({
 
 	// A user can have many entries in the userPhoneNumbers table
 	userPhoneNumbers: many(userPhoneNumbersTable),
+
+	// A user can have an userImage entry that can be its profile image
+	profileImage: one(userImagesTable, {
+		fields: [usersTable.profile_image_id],
+		references: [userImagesTable.id],
+	}),
 }));
 
 // Define relations for the userImages join table
@@ -94,6 +100,12 @@ export const petUserPhoneNumbersRelations = relations(
 		}),
 	}),
 );
+
+export const userProfileImageRelation = foreignKey({
+	columns: [usersTable.profile_image_id],
+	foreignColumns: [userImagesTable.id],
+	name: 'user_profile_image_fk',
+});
 
 export const petMainContactPhoneNumberRelation = foreignKey({
 	columns: [petsTable.main_contact_phone_number_id],

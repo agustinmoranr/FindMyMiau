@@ -1,0 +1,1 @@
+ALTER TABLE "users_table" ADD COLUMN "profile_image_id" uuid;--> statement-breakpoint

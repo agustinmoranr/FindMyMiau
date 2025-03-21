@@ -5,6 +5,7 @@ import {
 	pgTable,
 	text,
 	timestamp,
+	uuid,
 } from 'drizzle-orm/pg-core';
 // import { userImagesTable } from './userImages';
 import { authenticatedRole } from 'drizzle-orm/supabase';
@@ -18,7 +19,7 @@ export const usersTable = pgTable(
 		email: text('email').notNull().unique(),
 		phone_number: text('phone_number').unique(),
 		password: text('password'),
-		profile_image_url: text('profile_image_url'),
+		profile_image_id: uuid('profile_image_id'),
 		is_public: boolean('is_public').default(true), // Flag to control visibility
 		deletedAt: timestamp({ withTimezone: true }),
 		created_at: createdAt,

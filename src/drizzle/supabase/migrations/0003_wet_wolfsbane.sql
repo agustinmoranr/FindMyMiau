@@ -1,1 +1,0 @@
-ALTER TABLE "users_table" RENAME COLUMN "profile_image" TO "profile_image_url";

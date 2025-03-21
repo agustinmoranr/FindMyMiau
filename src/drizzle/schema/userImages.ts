@@ -13,7 +13,7 @@ import { usersTable } from './users';
 
 // Private user images
 export const userImagesTable = pgTable(
-	'user_images',
+	'user_images_table',
 	{
 		id: id,
 		user_id: uuid('user_id')

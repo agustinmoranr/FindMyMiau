@@ -3,6 +3,10 @@ import Link from '@/components/ui/Link';
 import Logo from '@/components/Logo.astro';
 import CTAButton from './CTAButton.astro';
 import SignInButton from './SignInButton.astro';
+import { ROUTES } from '@/lib/routes';
+
+const hasSession = Boolean(Astro.locals.session);
+const userIsInDashboard = Astro.url.pathname === ROUTES.DASHBOARD;
 ---
 
 <header
@@ -29,16 +33,19 @@ import SignInButton from './SignInButton.astro';
 				<Link href='#faq' className='text-sm font-medium'> FAQ </Link>
 
 				<SignInButton />
-				<CTAButton
-					elevationEffectHover={false}
-					shadowEffectHover={false}
-					class='font-medium text-sm'
-					PawPrintProps={{
-						className: '!size-3.5',
-					}}
-				>
-					Crear Perfil
-				</CTAButton>
+				{
+					!userIsInDashboard && (
+						<CTAButton
+							elevationEffectHover={false}
+							shadowEffectHover={false}
+							class='font-medium text-sm'
+							PawPrintProps={{
+								className: '!size-3.5',
+							}}>
+							{hasSession ? 'Dashboard' : 'Crear Perfil'}
+						</CTAButton>
+					)
+				}
 			</nav>
 		</div>
 	</div>

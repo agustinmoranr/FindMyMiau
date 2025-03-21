@@ -12,9 +12,7 @@ import { relations, sql } from 'drizzle-orm';
 import { authenticatedRole } from 'drizzle-orm/supabase';
 
 import { usersTable } from './users';
-// import { petImagesTable } from './petImages';
 import { createdAt, id, updatedAt } from '../schemaHelpers';
-import { petContactNumbersTable } from './petContactNumbers';
 
 export const petSpecies = ['gato', 'perro', 'ave', 'otro'] as const;
 export type PetSpecies = (typeof petSpecies)[number];
@@ -50,9 +48,7 @@ export const petsTable = pgTable(
 		birthdate_accuracy: birthDateAccuracyEnum('birthdate_accuracy'),
 		gender: gendersEnum('gender'),
 		description: text('description'),
-		main_contact_number_id: uuid('main_contact_number_id')
-			.references(() => petContactNumbersTable.id)
-			.notNull(),
+		main_contact_phone_number_id: uuid('main_contact_phone_number_id'),
 		qr_url: text('qr_url').notNull().unique(),
 		extra_fields: jsonb('extra_fields'),
 		created_at: createdAt,

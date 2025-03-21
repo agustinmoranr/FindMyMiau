@@ -4,8 +4,8 @@ import { usersTable } from './users';
 import { sql } from 'drizzle-orm';
 import { authenticatedRole } from 'drizzle-orm/supabase';
 
-export const petContactNumbersTable = pgTable(
-	'pet_contact_numbers_table',
+export const userPhoneNumbersTable = pgTable(
+	'user_phone_numbers_table',
 	{
 		id: id,
 		user_id: uuid('user_id')

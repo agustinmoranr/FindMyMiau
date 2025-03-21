@@ -1,9 +1,11 @@
 import { relations } from 'drizzle-orm';
+import { foreignKey } from 'drizzle-orm/pg-core';
 import { usersTable } from '../users';
 import { userImagesTable } from '../userImages';
 import { petsTable } from '../pets';
 import { petImagesTable } from '../petImages';
-import { petContactNumbersTable } from '../petContactNumbers';
+import { userPhoneNumbersTable } from '../userPhoneNumbers';
+import { petUserPhoneNumbersTable } from '../pet_userPhoneNumbers';
 
 // Define relations for the users table
 export const userRelations = relations(usersTable, ({ many }) => ({
@@ -12,6 +14,9 @@ export const userRelations = relations(usersTable, ({ many }) => ({
 
 	// A user can have many entries in the pets table
 	pets: many(petsTable),
+
+	// A user can have many entries in the userPhoneNumbers table
+	userPhoneNumbers: many(userPhoneNumbersTable),
 }));
 
 // Define relations for the userImages join table
@@ -34,9 +39,13 @@ export const petRelations = relations(petsTable, ({ one, many }) => ({
 	// A pet can have many entries in the pet_images table
 	petImages: many(petImagesTable),
 
-	mainContactNumber: one(petContactNumbersTable, {
-		fields: [petsTable.main_contact_number_id],
-		references: [petContactNumbersTable.id],
+	// A pet can have many entries in the pet_userPhoneNumbers table
+	petContactNumbers: many(petUserPhoneNumbersTable),
+
+	// A pet can have an entry that will be the mainContactPhoneNumber
+	mainContactPhoneNumber: one(petUserPhoneNumbersTable, {
+		fields: [petsTable.main_contact_phone_number_id],
+		references: [petUserPhoneNumbersTable.id],
 	}),
 }));
 
@@ -55,13 +64,39 @@ export const petImagesRelations = relations(petImagesTable, ({ one }) => ({
 	}),
 }));
 
-export const petContactNumbersRelations = relations(
-	petContactNumbersTable,
+export const userPhoneNumbersRelations = relations(
+	userPhoneNumbersTable,
 	({ one, many }) => ({
+		//An userPhoneNumber belongs to one user owner
 		owner: one(usersTable, {
-			fields: [petContactNumbersTable.user_id],
+			fields: [userPhoneNumbersTable.user_id],
 			references: [usersTable.id],
 		}),
-		associatedPets: many(petsTable),
+
+		// An userPhoneNumber can have many entries in the pet_userPhoneNumbers table
+		associatedPetPhoneNumbers: many(petUserPhoneNumbersTable),
 	}),
 );
+
+export const petUserPhoneNumbersRelations = relations(
+	petUserPhoneNumbersTable,
+	({ one, many }) => ({
+		// a pet_userPhoneNumber belongs to only one userPhoneNumber entry
+		userPhoneNumber: one(userPhoneNumbersTable, {
+			fields: [petUserPhoneNumbersTable.user_phone_number_id],
+			references: [userPhoneNumbersTable.id],
+		}),
+
+		// a pet_userPhoneNumber belongs to only one pet entry
+		pet: one(petsTable, {
+			fields: [petUserPhoneNumbersTable.pet_id],
+			references: [petsTable.id],
+		}),
+	}),
+);
+
+export const petMainContactPhoneNumberRelation = foreignKey({
+	columns: [petsTable.main_contact_phone_number_id],
+	foreignColumns: [petUserPhoneNumbersTable.id],
+	name: 'pet_main_contact_fk',
+});

@@ -1,14 +1,11 @@
 ---
-import { Toaster } from '@/components/ui/toaster';
-import ErrorNotifier from '@/components/ErrorNotifier';
-import Navbar from '@/components/Navbar.astro';
-import '@/styles/global.css';
 // Supports weights 400-800
 import '@fontsource-variable/baloo-2';
-import SignOutButton from '@/components/SignOutButton.astro';
-import Logo from '@/components/Logo.astro';
-import Link from '@/components/ui/Link';
-import Header from './header.astro';
+
+import Header from './Header.astro';
+import { Toaster } from '@/components/ui/toaster';
+import ErrorNotifier from '@/components/ErrorNotifier';
+import '@/styles/global.css';
 ---
 
 <!doctype html>
@@ -23,7 +20,6 @@ import Header from './header.astro';
 	<body class='dark'>
 		<Header />
 		<slot />
-		<!-- <Footer /> -->
 		<Toaster richColors client:load />
 		<ErrorNotifier client:idle />
 	</body>

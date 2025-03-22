@@ -1,33 +1,32 @@
 import useIntersectionObserver from '@/lib/hooks/useIntersectionObserver';
 
-interface Props extends React.SVGProps<SVGSVGElement> {
-	size?: number | string;
-}
+interface Props extends React.SVGProps<SVGSVGElement> {}
 
 function CatCompany({
-	size = 150,
 	fill = 'var(--foreground)',
+	width,
+	height,
 	...props
 }: Props) {
-	const [ref, isVisible] = useIntersectionObserver<SVGSVGElement>({
-		threshold: 1,
-	});
+	// const [ref, isVisible] = useIntersectionObserver<SVGSVGElement>({
+	// 	threshold: 1,
+	// });
 
-	const imageStyle = {
-		transform: isVisible ? 'rotate(0deg)' : 'rotate(180deg)',
-		transition: 'transform 0.8s cubic-bezier(0.46,0.03,0.52,0.96)',
-	};
+	// const imageStyle = {
+	// 	transform: isVisible ? 'rotate(0deg)' : 'rotate(180deg)',
+	// 	transition: 'transform 0.8s cubic-bezier(0.46,0.03,0.52,0.96)',
+	// };
 
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			xmlnsXlink='http://www.w3.org/1999/xlink'
 			xmlSpace='preserve'
-			width={size}
-			height={size}
-			viewBox='0 0 150 140'
-			style={imageStyle}
-			ref={ref}
+			width={width}
+			height={height}
+			viewBox='5 0 142 140'
+			// style={imageStyle}
+			// ref={ref}
 			{...props}>
 			<path
 				fill={fill}

@@ -14,6 +14,12 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from './ui/label';
+import CatCompany from './CatCompany';
+import { H2 } from './ui/typography/Headings';
+import { petImagesData } from '@/lib/petTypes';
+
 import { Input } from '@/components/ui/input';
 import {
 	Select,
@@ -33,41 +39,38 @@ import {
 	PhoneInput,
 	spanishSpeakingCountries,
 } from '@/components/ui/phone-input';
-import { RadioGroup } from '@/components/ui/radio-group';
 // import {
 //   DatetimePicker
 // } from "@/components/ui/datetime-picker"
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Calendar } from './ui/calendar';
 import { format } from 'date-fns';
-import { RadioGroupItem } from './ui/radio-group';
 import { genders, petSpecies, petSpeciesEnum } from '@/drizzle/schema';
 import { isPossiblePhoneNumber } from 'react-phone-number-input';
 import es from 'react-phone-number-input/locale/es';
 import { es as DatePickerEsLocale } from 'react-day-picker/locale';
-import { AspectRatio } from './ui/aspect-ratio';
 
 const formSchema = z.object({
-	name: z.string().min(1),
-	description: z.string().optional().nullable(),
-	birthday: z.coerce.date().optional(),
-	species: z.enum(petSpecies).default('gato'),
-	profile_photo_file: z
-		.array(
-			z.instanceof(File).refine((file) => file.size < 4 * 1024 * 1024, {
-				message: 'La imagen debe ser menor a 4MB',
-			}),
-		)
-		.max(1, {
-			message: 'Puedes añadir un máximo de 5 fotos',
-		}),
-	phone_number: z
-		.string()
-		.refine((value) => !value || isPossiblePhoneNumber(value), {
-			message: 'Número de teléfono inválido',
-		}),
-	gender: z.enum(genders).optional(),
-	race: z.string().optional(),
+	// name: z.string().min(1),
+	// description: z.string().optional().nullable(),
+	// birthday: z.coerce.date().optional(),
+	species: z.enum(petSpecies),
+	// profile_photo_file: z
+	// 	.array(
+	// 		z.instanceof(File).refine((file) => file.size < 4 * 1024 * 1024, {
+	// 			message: 'La imagen debe ser menor a 4MB',
+	// 		}),
+	// 	)
+	// 	.max(1, {
+	// 		message: 'Puedes añadir un máximo de 5 fotos',
+	// 	}),
+	// phone_number: z
+	// 	.string()
+	// 	.refine((value) => !value || isPossiblePhoneNumber(value), {
+	// 		message: 'Número de teléfono inválido',
+	// 	}),
+	// gender: z.enum(genders).optional(),
+	// race: z.string().optional(),
 });
 
 export default function RegisterForm() {
@@ -79,11 +82,10 @@ export default function RegisterForm() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			name: '',
-			description: null,
-			birthday: new Date(),
-			species: 'gato',
-			race: '',
+			// name: '',
+			// description: null,
+			// birthday: new Date(),
+			// race: '',
 		},
 	});
 
@@ -104,10 +106,70 @@ export default function RegisterForm() {
 
 	return (
 		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className='space-y-8 max-w-3xl mx-auto py-10'>
-				<FormField
+			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 py-2'>
+				{/* implementing pet type selection as radio group customized */}
+				<div>
+					<H2 className='mb-0 text-3xl text-pretty'>
+						FindMy<span className='text-primary'>Miau</span> no es exclusivo de
+						gatos
+					</H2>
+					<FormField
+						control={form.control}
+						name='species'
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel className='text-muted-foreground [font-size:inherit] font-normal'>
+										Selecciona tu tipo de mascota
+									</FormLabel>
+									<FormControl>
+										<RadioGroup
+											value={field.value}
+											onValueChange={field.onChange}
+											className='grid grid-cols-2 xl:grid-cols-4 gap-2.5 mt-8'>
+											{petSpecies.map((option, index) => {
+												const illustration =
+													option === 'gato' ? (
+														<CatCompany width='100%' fill='#fff' />
+													) : (
+														<img
+															src={petImagesData[option].img.src}
+															width={petImagesData[option].img.width}
+															height={petImagesData[option].img.height}
+															alt={petImagesData[option].alt}
+															className='invert-100'
+														/>
+													);
+												return (
+													<div key={option}>
+														<RadioGroupItem
+															value={option}
+															id={option}
+															className='sr-only peer'
+														/>
+														<Label
+															htmlFor={option}
+															className='bg-secondary/50 backdrop-blur-sm border-primary/30 text-card-foreground flex flex-col rounded-xl border p-6 shadow-sm peer-has-data-[state=checked]:bg-primary/75  peer-focus-visible:border-accent peer-focus-visible:ring-accent focus-visible:ring-[3px]
+                               [font-size:inherit] hover:peer-data-[state=unchecked]:scale-[97%] hover:peer-data-[state=unchecked]:bg-secondary/75 ease-[ease] duration-200'>
+															<div className='flex flex-col justify-between gap-6'>
+																{illustration}
+																<span className='leading-none font-normal text-center'>
+																	{capitalize(option)}
+																</span>
+															</div>
+														</Label>
+													</div>
+												);
+											})}
+										</RadioGroup>
+									</FormControl>
+								</FormItem>
+							);
+						}}
+					/>
+				</div>
+
+				{/* <FormField
 					control={form.control}
 					name='name'
 					render={({ field }) => (
@@ -145,7 +207,7 @@ export default function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 
 				{/* <FormField
 					control={form.control}
@@ -162,7 +224,7 @@ export default function RegisterForm() {
 					)}
 				/> */}
 
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name='species'
 					render={({ field, fieldState, formState }, ...args) => {
@@ -195,9 +257,9 @@ export default function RegisterForm() {
 							</FormItem>
 						);
 					}}
-				/>
+				/> */}
 
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name='profile_photo_file'
 					render={({ field }) => (
@@ -237,13 +299,13 @@ export default function RegisterForm() {
 													}`}
 													className='p-0 size-20'>
 													<AspectRatio className='size-full'>
-														{/* <Image
+														<Image
 															src={srcImage}
 															alt={file.name}
 															width={400}
 															height={400}
 															className='object-cover rounded-md'
-														/> */}
+														/>
 														<span className='block'>
 															Aquí se mostrar el preview de la imagen
 														</span>
@@ -258,9 +320,9 @@ export default function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name='phone_number'
 					render={({ field }) => (
@@ -284,9 +346,9 @@ export default function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name='gender'
 					render={({ field }) => (
@@ -316,9 +378,9 @@ export default function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name='race'
 					render={({ field }) => (
@@ -336,27 +398,9 @@ export default function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 
 				{/* <FormField
-      control={form.control}
-      name="age"
-      render={({ field }) => (
-        <FormItem className="flex flex-col">
-          <FormLabel>Nacimiento</FormLabel>
-          <DatetimePicker
-            {...field}
-            format={[
-              ["months", "days", "years"],
-              ["hours", "minutes", "am/pm"],
-            ]}
-          />
-       <FormDescription>Añade la fecha de nacimiento de tu mascota</FormDescription>
-          <FormMessage />
-        </FormItem>
-      )}
-    /> */}
-				<FormField
 					control={form.control}
 					name='birthday'
 					render={({ field }) => (
@@ -397,7 +441,7 @@ export default function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 				<Button type='submit'>Crear Perfil 🎉</Button>
 			</form>
 		</Form>

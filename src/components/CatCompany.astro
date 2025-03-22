@@ -1,18 +1,16 @@
 ---
-interface Props extends astroHTML.JSX.SVGAttributes {
-	size?: number | string;
-}
+interface Props extends astroHTML.JSX.SVGAttributes {}
 
-const { size = '150', fill = 'var(--foreground)', ...props } = Astro.props;
+const { width, height, fill = 'var(--foreground)', ...props } = Astro.props;
 ---
 
 <svg
 	xmlns='http://www.w3.org/2000/svg'
 	xmlns:xlink='http://www.w3.org/1999/xlink'
 	xml:space='preserve'
-	width={size}
-	height={size}
-	viewBox='0 0 150 140'
+	width={width}
+	height={height}
+	viewBox='5 0 142 140'
 	{...props}
 >
 	<path

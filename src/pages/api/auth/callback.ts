@@ -1,6 +1,11 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../../lib/supabaseClient';
-import { createUser, getUserByEmail } from '@/drizzle/queries/user';
+import {
+	createUser,
+	createUserImage,
+	getUserByEmail,
+	updateUser,
+} from '@/drizzle/queries/user';
 import { ROUTES } from '@/lib/routes';
 
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
@@ -36,14 +41,43 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 				id: data.user.id,
 				name: data.user.user_metadata.full_name,
 				email: data.user.email!,
-				profile_image_url: data.user.user_metadata.avatar_url,
+				// profile_image_url: data.user.user_metadata.avatar_url,
 			}).catch((error) => {
 				console.error('Error inserting user', error);
 				throw new Error('Database insert failed');
 			});
 		}
 
-		//3. añadir cookies de acceso
+		//3. creamos imagen de perfil si el usuario no cuenta con una y su provider si
+		if (
+			userData.length > 0 &&
+			!userData[0].profile_image_id &&
+			data.user.user_metadata.avatar_url
+		) {
+			const userProfileImageResponse = await createUserImage({
+				user_id: data.user.id,
+				url: data.user.user_metadata.avatar_url,
+				thumbnail_url: data.user.user_metadata.avatar_url,
+				alt_text: 'Photo de perfil del usuario',
+				content_type: 'image/*',
+			}).catch((error) => {
+				console.error('Error creating user profile image', error);
+				throw new Error('Database insert failed');
+			});
+
+			//4. relacionamos update del usuario para añadir id de la imagen
+			if (userProfileImageResponse.length > 0) {
+				const userProfileImage = userProfileImageResponse[0];
+				await updateUser(userProfileImage.user_id, {
+					profile_image_id: userProfileImage.id,
+				}).catch((error) => {
+					console.error('Error updating user profile image reference', error);
+					throw new Error('Database update failed');
+				});
+			}
+		}
+
+		//5. añadir cookies de acceso
 		cookies.set('sb-access-token', access_token, {
 			path: '/',
 		});

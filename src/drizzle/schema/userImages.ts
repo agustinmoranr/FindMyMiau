@@ -52,3 +52,6 @@ export const userImagesTable = pgTable(
 		}),
 	],
 );
+
+export type InsertUserImage = typeof userImagesTable.$inferInsert;
+export type SelectUserImage = typeof userImagesTable.$inferSelect;

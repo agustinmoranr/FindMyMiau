@@ -1,29 +1,10 @@
 ---
 import SignOutButton from '@/components/SignOutButton.astro';
-import { db } from '@/drizzle/db';
-import { petsTable } from '@/drizzle/schema';
-import { eq } from 'drizzle-orm';
-let hasPetProfiles = false;
-try {
-	const user = Astro.locals.user;
-	const hasUser = user !== null;
-	if (hasUser) {
-		const petProfiles = await db
-			.select()
-			.from(petsTable)
-			.where(eq(petsTable.user_id, user.id))
-			.limit(1)
-			.execute();
-		console.log(petProfiles);
-		hasPetProfiles = petProfiles.length > 0;
-	}
-} catch (error) {
-	console.error('Database query failed');
-}
-
+const isANewUser = Astro.cookies.get('new-user');
+console.log(isANewUser);
 ---
 
-{hasPetProfiles && <header
+{!isANewUser && <header
 	class='sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
 >
 	<div
@@ -39,4 +20,5 @@ try {
 			</nav>
 		</div>
 	</div>
-</header>}
+</header>
+}

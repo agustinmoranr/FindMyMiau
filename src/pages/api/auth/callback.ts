@@ -11,8 +11,8 @@ import { ROUTES } from '@/lib/routes';
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 	try {
 		const authCode = url.searchParams.get('code');
-		const hasRedirectParam = url.searchParams.has('redirect');
 		const redirectParam = url.searchParams.get('redirect') ?? '';
+		let redirectTo = redirectParam ? redirectParam : ROUTES.DASHBOARD;
 
 		if (!authCode) {
 			console.error('No code provided', { authCode });
@@ -35,25 +35,22 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 			throw new Error('Database query failed');
 		});
 
+		const hasUserData = userData && userData.length;
+
 		//2. si el usuario no existe, se inserta en un nuevo registro en la tabla.
-		if (!userData || !userData.length) {
+		if (!hasUserData) {
+			//creamos registro del usuario
 			await createUser({
 				id: data.user.id,
 				name: data.user.user_metadata.full_name,
 				email: data.user.email!,
-				// profile_image_url: data.user.user_metadata.avatar_url,
+				// profile_image_id: userProfileImageResponse[0].id,
 			}).catch((error) => {
 				console.error('Error inserting user', error);
 				throw new Error('Database insert failed');
 			});
-		}
 
-		//3. creamos imagen de perfil si el usuario no cuenta con una y su provider si
-		if (
-			userData.length > 0 &&
-			!userData[0].profile_image_id &&
-			data.user.user_metadata.avatar_url
-		) {
+			// creamos un registro para la imagen de perfil del usuario
 			const userProfileImageResponse = await createUserImage({
 				user_id: data.user.id,
 				url: data.user.user_metadata.avatar_url,
@@ -65,19 +62,18 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 				throw new Error('Database insert failed');
 			});
 
-			//4. relacionamos update del usuario para añadir id de la imagen
-			if (userProfileImageResponse.length > 0) {
-				const userProfileImage = userProfileImageResponse[0];
-				await updateUser(userProfileImage.user_id, {
-					profile_image_id: userProfileImage.id,
-				}).catch((error) => {
-					console.error('Error updating user profile image reference', error);
-					throw new Error('Database update failed');
-				});
-			}
+			//añadimos referencia del usuario con su foto de perfil
+			const userProfileImage = userProfileImageResponse[0];
+			await updateUser(userProfileImage.user_id, {
+				profile_image_id: userProfileImage.id,
+			});
+
+			//añadimos cookie "new-user" para determinar que es un usuario recién registrado en la plataforma
+			//esta cookie debe ser eliminada cuando el usuario cree el perfil de su primera mascota
+			cookies.set('new-user', 'true', { path: '/' });
 		}
 
-		//5. añadir cookies de acceso
+		//3. añadir cookies de acceso
 		cookies.set('sb-access-token', access_token, {
 			path: '/',
 		});
@@ -85,7 +81,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 			path: '/',
 		});
 
-		return redirect(hasRedirectParam ? redirectParam : ROUTES.DASHBOARD);
+		return redirect(redirectTo);
 	} catch (error: any) {
 		console.error('Unhandled error in callback:', error);
 		return redirect(`${ROUTES.LOGIN}?signin_error=unexpected_error`);

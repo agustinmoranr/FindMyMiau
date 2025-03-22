@@ -13,10 +13,10 @@ export async function createUser(data: InsertUser) {
 }
 
 export async function updateUser(
-	id: SelectUser['id'],
+	userId: SelectUser['id'],
 	data: Partial<InsertUser>,
 ) {
-	return await db.update(usersTable).set(data).where(eq(usersTable.id, id));
+	return await db.update(usersTable).set(data).where(eq(usersTable.id, userId));
 }
 
 export async function getUserByEmail(email: SelectUser['email']) {

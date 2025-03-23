@@ -1,7 +1,6 @@
 ---
 import SignOutButton from '@/components/SignOutButton.astro';
 const isANewUser = Astro.cookies.get('new-user');
-console.log(isANewUser);
 ---
 
 {!isANewUser && <header

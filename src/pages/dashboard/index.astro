@@ -1,7 +1,7 @@
 ---
 import { H1 } from '@/components/ui/typography/Headings';
 import Layout from './DashboardLayout.astro';
-import RegisterForm from '@/components/RegisterForm';
+import CreatePetProfileForm from '@/components/RegisterForm';
 
 const email = Astro.locals.user?.email;
 ---
@@ -10,8 +10,8 @@ const email = Astro.locals.user?.email;
 	<main>
 		<div class='px-5 py-10'>
 			<div class='min-h-dvh max-w-3xl mx-auto'>
-				<H1 className='mb-8 text-5xl'>Creación de perfil</H1>
-				<RegisterForm client:load />
+				<H1 className='text-5xl'>Creación de perfil</H1>
+				<CreatePetProfileForm client:load />
 			</div>
 		</div>
 	</main>

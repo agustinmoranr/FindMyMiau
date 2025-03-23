@@ -161,7 +161,7 @@ export const FileUploader = forwardRef<
 				const files = acceptedFiles;
 
 				if (!files) {
-					toast.error('Error de archivo, probablemente demasiado grande');
+					toast.error('Error de archivo, probablemente es demasiado grande');
 					return;
 				}
 
@@ -261,7 +261,7 @@ export const FileUploaderContent = forwardRef<
 
 	return (
 		<div
-			className={cn('w-full px-1')}
+			className={cn('size-full')}
 			ref={containerRef}
 			aria-description='content file holder'>
 			<div
@@ -282,36 +282,57 @@ FileUploaderContent.displayName = 'FileUploaderContent';
 
 export const FileUploaderItem = forwardRef<
 	HTMLDivElement,
-	{ index: number } & React.HTMLAttributes<HTMLDivElement>
->(({ className, index, children, ...props }, ref) => {
-	const { removeFileFromSet, activeIndex, direction } = useFileUpload();
-	const isSelected = index === activeIndex;
-	return (
-		<div
-			ref={ref}
-			className={cn(
-				buttonVariants({ variant: 'ghost' }),
-				'h-6 p-1 justify-between cursor-pointer relative',
-				className,
-				isSelected ? 'bg-muted' : '',
-			)}
-			{...props}>
-			<div className='font-medium leading-none tracking-tight flex items-center gap-1.5 h-full w-full'>
-				{children}
-			</div>
-			<button
-				type='button'
+	{ index: number } & React.HTMLAttributes<HTMLDivElement> & {
+			removeButtonClassName?: string;
+			removeIconClassName?: string;
+		}
+>(
+	(
+		{
+			className,
+			index,
+			children,
+			removeButtonClassName,
+			removeIconClassName,
+			...props
+		},
+		ref,
+	) => {
+		const { removeFileFromSet, activeIndex, direction } = useFileUpload();
+		const isSelected = index === activeIndex;
+		return (
+			<div
+				ref={ref}
 				className={cn(
-					'absolute',
-					direction === 'rtl' ? 'top-1 left-1' : 'top-1 right-1',
+					// buttonVariants({ variant: 'ghost' }),
+					'h-6 justify-between cursor-pointer relative',
+					className,
+					isSelected ? 'bg-muted' : '',
 				)}
-				onClick={() => removeFileFromSet(index)}>
-				<span className='sr-only'>remove item {index}</span>
-				<RemoveIcon className='w-4 h-4 hover:stroke-destructive duration-200 ease-in-out' />
-			</button>
-		</div>
-	);
-});
+				{...props}>
+				<div className='font-medium leading-none tracking-tight flex items-center gap-1.5 h-full w-full'>
+					{children}
+				</div>
+				<button
+					type='button'
+					className={cn(
+						'absolute',
+						direction === 'rtl' ? 'top-1 left-1' : 'top-1 right-1',
+						removeButtonClassName,
+					)}
+					onClick={() => removeFileFromSet(index)}>
+					<span className='sr-only'>Eliminar archivo {index}</span>
+					<RemoveIcon
+						className={cn(
+							'w-4 h-4 hover:stroke-destructive duration-200 ease-in-out',
+							removeIconClassName,
+						)}
+					/>
+				</button>
+			</div>
+		);
+	},
+);
 
 FileUploaderItem.displayName = 'FileUploaderItem';
 
@@ -326,7 +347,7 @@ export const FileInput = forwardRef<
 			ref={ref}
 			{...props}
 			className={`relative w-full ${
-				isLOF ? 'opacity-50 cursor-not-allowed ' : 'cursor-pointer '
+				isLOF ? 'cursor-not-allowed ' : 'cursor-pointer '
 			}`}>
 			<div
 				className={cn(
